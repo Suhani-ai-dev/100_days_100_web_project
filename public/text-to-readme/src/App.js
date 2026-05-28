@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import Editor from './components/editor/Editor';
-import AlertBox from './components/alert/AlertBox';
-import { Typewriter } from 'react-simple-typewriter'
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Editor from "./components/editor/Editor";
+import AlertBox from "./components/alert/AlertBox";
+import { Typewriter } from "react-simple-typewriter";
 
 const App = () => {
   const [isPc, setIsPc] = useState(true);
@@ -23,11 +23,11 @@ const App = () => {
     checkScreenSize();
 
     // Add event listener to handle resizing
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
     // Cleanup the event listener
     return () => {
-      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
 
@@ -37,17 +37,22 @@ const App = () => {
 
   return (
     <div className="App">
-      {showAlert && <AlertBox message="Please load on a PC for better experience" onClose={handleCloseAlert} />}
+      {showAlert && (
+        <AlertBox
+          message="Please load on a PC for better experience"
+          onClose={handleCloseAlert}
+        />
+      )}
       {isPc && (
         <>
           <h1 className="app-h1">
-          <Typewriter
-            words={['Welcome to Text2Readme']}
-            cursor
-            cursorBlinking
-            cursorStyle='!'
-            typeSpeed={70}
-          />
+            <Typewriter
+              words={["Welcome to Text2Readme"]}
+              cursor
+              cursorBlinking
+              cursorStyle="!"
+              typeSpeed={70}
+            />
           </h1>
           <Editor />
         </>

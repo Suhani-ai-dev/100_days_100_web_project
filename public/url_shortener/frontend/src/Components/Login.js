@@ -1,10 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { endpoints} from '../utils/api';
-
-
+import { endpoints } from "../utils/api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,52 +12,46 @@ export default function Login() {
 
   const [Logindata, setLogindata] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const onChaneHandler = (e) => {
     setLogindata({
-      ...Logindata, [e.target.name]: e.target.value
-    })
-  }
-
+      ...Logindata,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const SubmitHandler = async (e) => {
-    e.preventDefault()
-    seterror("")
-    setLoading(true) // ✅ start loading
+    e.preventDefault();
+    seterror("");
+    setLoading(true); // ✅ start loading
 
     const response = await fetch(endpoints.LOGIN, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(Logindata)
-    })
+      body: JSON.stringify(Logindata),
+    });
 
-    const data = await response.json()
+    const data = await response.json();
 
     if (!response.ok) {
-      seterror(data.msg)
-      setLoading(false) // ✅ stop loading
-    }
-    else {
-      setsuccess(data.msg)
+      seterror(data.msg);
+      setLoading(false); // ✅ stop loading
+    } else {
+      setsuccess(data.msg);
 
       setTimeout(() => {
         navigate("/");
-      }, 2000)
+      }, 2000);
     }
-  }
+  };
 
   return (
     <>
-
-
-
-
-
       <Helmet>
         <title>Login </title>
 
@@ -80,13 +72,7 @@ export default function Login() {
         />
       </Helmet>
 
-
-
-
-
-
       <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center">
-
         {/* 🔥 LOADING OVERLAY */}
         {loading && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
@@ -99,7 +85,6 @@ export default function Login() {
 
         {/* Container */}
         <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-lg">
-
           {/* Heading */}
           <h1 className="text-2xl font-semibold mb-6 text-center">
             Login to your account
@@ -119,17 +104,14 @@ export default function Login() {
 
           {/* Form */}
           <form onSubmit={SubmitHandler} className="flex flex-col gap-4">
-
             {/* Email */}
             <div>
-              <label className="block text-sm mb-1 text-zinc-400">
-                Email
-              </label>
+              <label className="block text-sm mb-1 text-zinc-400">Email</label>
               <input
                 type="email"
                 placeholder="you@example.com"
                 onChange={onChaneHandler}
-                name='email'
+                name="email"
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500 transition"
               />
             </div>
@@ -143,7 +125,7 @@ export default function Login() {
                 type="password"
                 placeholder="••••••••"
                 onChange={onChaneHandler}
-                name='password'
+                name="password"
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500 transition"
               />
             </div>
@@ -156,7 +138,6 @@ export default function Login() {
             >
               {loading ? "Logging in..." : "Login"} {/* ✅ dynamic text */}
             </button>
-
           </form>
 
           {/* Divider */}
@@ -169,16 +150,17 @@ export default function Login() {
           {/* Signup */}
           <p className="text-center text-sm text-zinc-400">
             Don’t have an account?{" "}
-            <button className="text-emerald-400 hover:text-emerald-300"
-              onClick={() => { window.location.href = "/signup" }}
+            <button
+              className="text-emerald-400 hover:text-emerald-300"
+              onClick={() => {
+                window.location.href = "/signup";
+              }}
             >
               Sign up
             </button>
           </p>
-
         </div>
       </div>
-
     </>
   );
 }

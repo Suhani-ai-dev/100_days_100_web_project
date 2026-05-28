@@ -8,23 +8,23 @@ Virtual Piano is an interactive web-based piano application that allows users to
 
 ## Features
 
-* 🎹 Play piano notes using keyboard or mouse
-* ✨ Smooth key press animations and hover effects
-* 🌌 Modern dark-themed premium UI design
-* 🎵 Realistic piano sound integration
-* ⚡ Responsive and interactive piano layout
-* 💡 Ambient glowing background effects
-* 🎨 Elegant typography and polished visuals
-* 🚀 Deployed and optimized for Vercel
+- 🎹 Play piano notes using keyboard or mouse
+- ✨ Smooth key press animations and hover effects
+- 🌌 Modern dark-themed premium UI design
+- 🎵 Realistic piano sound integration
+- ⚡ Responsive and interactive piano layout
+- 💡 Ambient glowing background effects
+- 🎨 Elegant typography and polished visuals
+- 🚀 Deployed and optimized for Vercel
 
 ---
 
 ## Technologies Used
 
-* HTML5
-* CSS3
-* JavaScript ES6
-* jQuery
+- HTML5
+- CSS3
+- JavaScript ES6
+- jQuery
 
 ---
 
@@ -46,8 +46,8 @@ cd virtual-piano
 
 You can run the project using:
 
-* VS Code Live Server extension
-* Any local development server
+- VS Code Live Server extension
+- Any local development server
 
 ### 4. Start the application
 
@@ -57,10 +57,10 @@ Open `index.html` in your browser.
 
 ## Usage
 
-* Use your keyboard keys (`A, W, S, E, D...`) to play piano notes
-* Click on piano keys using your mouse
-* Enjoy smooth visual feedback and sound interactions
-* Experience the modern animated piano interface
+- Use your keyboard keys (`A, W, S, E, D...`) to play piano notes
+- Click on piano keys using your mouse
+- Enjoy smooth visual feedback and sound interactions
+- Experience the modern animated piano interface
 
 ---
 
@@ -69,7 +69,6 @@ Open `index.html` in your browser.
 ### Modern Virtual Piano UI
 
 <img width="1902" height="956" alt="image" src="https://github.com/user-attachments/assets/55b02bce-d522-49cb-a3c8-ae332b3a121b" />
-
 
 ## Contributing
 

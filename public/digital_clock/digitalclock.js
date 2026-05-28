@@ -42,7 +42,7 @@ const TIMEZONES = [
   { id: "Asia/Kolkata", name: "Kolkata (India)", code: "IST" },
   { id: "Asia/Tokyo", name: "Tokyo (Japan)", code: "JST" },
   { id: "Europe/London", name: "London (UK)", code: "GMT" },
-  { id: "America/New_York", name: "New York", code: "EST" }
+  { id: "America/New_York", name: "New York", code: "EST" },
 ];
 
 // INIT
@@ -71,7 +71,7 @@ function setTheme(theme) {
 
   document.body.className = `${theme}-theme`;
 
-  document.querySelectorAll(".theme-swatch").forEach(swatch => {
+  document.querySelectorAll(".theme-swatch").forEach((swatch) => {
     swatch.classList.toggle("active", swatch.dataset.theme === theme);
   });
 
@@ -79,7 +79,7 @@ function setTheme(theme) {
     classic: "CLASSIC",
     modern: "MODERN",
     futuristic: "CYBER",
-    nebula: "NEBULA"
+    nebula: "NEBULA",
   };
   const badge = document.getElementById("theme-label");
   if (badge) badge.textContent = labelMap[theme] || "CLASSIC";
@@ -107,12 +107,20 @@ function updateClock() {
   secondsEl.textContent = String(s).padStart(2, "0");
   ampmEl.textContent = ampm;
 
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   dayNameEl.textContent = days[now.getDay()];
   fullDateEl.textContent = now.toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   });
 
   checkAlarms(`${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`);
@@ -135,7 +143,7 @@ function addNewAlarm() {
     enabled: true,
     snooze: parseInt(document.getElementById("alarm-snooze").value) || 5,
     snoozedTime: null,
-    snoozeCount: 0
+    snoozeCount: 0,
   };
 
   alarms.push(alarm);
@@ -152,7 +160,7 @@ function checkAlarms(currentTime) {
     lastCheckedMinute = currentTime;
   }
 
-  alarms.forEach(alarm => {
+  alarms.forEach((alarm) => {
     if (!alarm.enabled) return;
     if (alarm.snoozedTime && Date.now() < alarm.snoozedTime) return;
     if (alarm.snoozedTime) alarm.snoozedTime = null;
@@ -239,9 +247,13 @@ function closeWorldClockModal() {
 
 async function fetchWorldCountries() {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,timezones,flags");
+    const response = await fetch(
+      "https://restcountries.com/v3.1/all?fields=name,timezones,flags",
+    );
     const data = await response.json();
-    countriesDatabase = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+    countriesDatabase = data.sort((a, b) =>
+      a.name.common.localeCompare(b.name.common),
+    );
     renderCountryOptions(countriesDatabase);
   } catch (error) {
     console.error("Failed to fetch world countries:", error);
@@ -260,7 +272,7 @@ function renderCountryOptions(countries) {
     return;
   }
 
-  countries.forEach(country => {
+  countries.forEach((country) => {
     const name = country.name.common;
     const flag = country.flags.svg || country.flags.png;
     const offset = country.timezones[0];
@@ -294,15 +306,15 @@ function renderCountryOptions(countries) {
 if (worldSearchInput) {
   worldSearchInput.addEventListener("input", (e) => {
     const term = e.target.value.toLowerCase();
-    const filtered = countriesDatabase.filter(c =>
-      c.name.common.toLowerCase().includes(term)
+    const filtered = countriesDatabase.filter((c) =>
+      c.name.common.toLowerCase().includes(term),
     );
     renderCountryOptions(filtered);
   });
 }
 
 function addCountryClock(name, offset, flag) {
-  const alreadyExists = worldClocks.some(item => item.name === name);
+  const alreadyExists = worldClocks.some((item) => item.name === name);
   if (alreadyExists) {
     showToast("Clock already added!");
     return;
@@ -353,27 +365,33 @@ function removeWorldClock(index) {
 function tickWorldClocks() {
   const liveNodes = document.querySelectorAll(".ticking-world-time");
 
-  liveNodes.forEach(node => {
+  liveNodes.forEach((node) => {
     const offsetStr = node.getAttribute("data-offset");
     const now = new Date();
-    const utcTimeMs = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const utcTimeMs = now.getTime() + now.getTimezoneOffset() * 60000;
 
     let mathematicalHoursOffset = 0;
     if (offsetStr.includes("+") || offsetStr.includes("-")) {
       const modifier = offsetStr.includes("+") ? 1 : -1;
-      const cleanSegments = offsetStr.replace("UTC", "").replace("+", "").replace("-", "").split(":");
+      const cleanSegments = offsetStr
+        .replace("UTC", "")
+        .replace("+", "")
+        .replace("-", "")
+        .split(":");
       const hoursSegment = parseInt(cleanSegments[0]) || 0;
       const minutesSegment = parseInt(cleanSegments[1]) || 0;
-      mathematicalHoursOffset = modifier * (hoursSegment + (minutesSegment / 60));
+      mathematicalHoursOffset = modifier * (hoursSegment + minutesSegment / 60);
     }
 
-    const targetedTime = new Date(utcTimeMs + (3600000 * mathematicalHoursOffset));
+    const targetedTime = new Date(
+      utcTimeMs + 3600000 * mathematicalHoursOffset,
+    );
 
     node.textContent = targetedTime.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      hour12: true
+      hour12: true,
     });
   });
 }
@@ -389,7 +407,7 @@ function renderHistoryLogs() {
   }
 
   container.innerHTML = historyLogs
-    .map(log => `<div class="log-entry"><span>${log.text}</span></div>`)
+    .map((log) => `<div class="log-entry"><span>${log.text}</span></div>`)
     .join("");
 }
 
@@ -410,11 +428,12 @@ function toggleHistoryLogs() {
 function populateTimezoneDropdown() {
   const container = document.getElementById("tz-options-list");
   if (!container) return;
-  container.innerHTML = TIMEZONES.map(tz =>
-    `<div class="tz-option ${tz.id === primaryTimezone ? 'selected' : ''}" onclick="selectPrimaryTimezone('${tz.id}', '${tz.name}')">
+  container.innerHTML = TIMEZONES.map(
+    (tz) =>
+      `<div class="tz-option ${tz.id === primaryTimezone ? "selected" : ""}" onclick="selectPrimaryTimezone('${tz.id}', '${tz.name}')">
       <span>${tz.name}</span>
       <span class="tz-code">${tz.code}</span>
-    </div>`
+    </div>`,
   ).join("");
 }
 
@@ -440,7 +459,9 @@ function filterTimezones() {
   const input = document.getElementById("tz-search-input").value.toLowerCase();
   const options = document.getElementById("tz-options-list").children;
   for (let opt of options) {
-    opt.style.display = opt.textContent.toLowerCase().includes(input) ? "flex" : "none";
+    opt.style.display = opt.textContent.toLowerCase().includes(input)
+      ? "flex"
+      : "none";
   }
 }
 
@@ -464,14 +485,15 @@ function renderAlarmsList() {
     return;
   }
 
-  container.innerHTML = alarms.map((alarm) => {
-    const [h, m] = alarm.time.split(":");
-    const h24 = parseInt(h);
-    const ampm = h24 >= 12 ? "PM" : "AM";
-    const h12 = h24 % 12 || 12;
-    const formattedTime = `${String(h12).padStart(2, "0")}:${m}`;
+  container.innerHTML = alarms
+    .map((alarm) => {
+      const [h, m] = alarm.time.split(":");
+      const h24 = parseInt(h);
+      const ampm = h24 >= 12 ? "PM" : "AM";
+      const h12 = h24 % 12 || 12;
+      const formattedTime = `${String(h12).padStart(2, "0")}:${m}`;
 
-    return `
+      return `
       <div class="alarm-item">
         <div class="alarm-item-left">
           <div>
@@ -491,11 +513,12 @@ function renderAlarmsList() {
         </div>
       </div>
     `;
-  }).join("");
+    })
+    .join("");
 }
 
 function toggleAlarmEnabled(id, enabled) {
-  const alarm = alarms.find(a => a.id === id);
+  const alarm = alarms.find((a) => a.id === id);
   if (alarm) {
     alarm.enabled = enabled;
     saveAlarms();
@@ -505,7 +528,7 @@ function toggleAlarmEnabled(id, enabled) {
 }
 
 function deleteAlarm(id) {
-  alarms = alarms.filter(a => a.id !== id);
+  alarms = alarms.filter((a) => a.id !== id);
   saveAlarms();
   renderAlarmsList();
   updateAlarmSummary();
@@ -536,8 +559,9 @@ function saveAlarms() {
 }
 
 function updateAlarmSummary() {
-  const count = alarms.filter(a => a.enabled).length;
-  if (alarmStatus) alarmStatus.textContent = count > 0 ? count + " Active" : "None Active";
+  const count = alarms.filter((a) => a.enabled).length;
+  if (alarmStatus)
+    alarmStatus.textContent = count > 0 ? count + " Active" : "None Active";
 }
 
 // ================= TOAST =================

@@ -13,14 +13,12 @@ Animated UI components
 Mobile-friendly layout
 Pure HTML, CSS, and JavaScript
 
-
 🛠️ Tech Stack
 | Technology | Usage |
 |------------|-------|
-| HTML5      | Structure |
-| CSS3       | Styling & Responsive Design |
+| HTML5 | Structure |
+| CSS3 | Styling & Responsive Design |
 | JavaScript | Interactivity & Animations |
-
 
 📂 Project Structure
 
@@ -39,7 +37,6 @@ plant-website/
 └── README.md
 ```
 
-
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
 git clone https://github.com/your-username/plant-website.git
@@ -53,9 +50,9 @@ You can also use a local development server such as:
 
 VS Code Live Server Extension
 
-
 🧠 HTML Structure
 index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,28 +65,25 @@ index.html
 </head>
 <body>
 
-
   <script src="script.js"></script>
 </body>
 </html>
 
-
 🎨 CSS Styling
 
 style.css
-* {
+
+- {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f4fff4;
-  color: #1f2937;
+font-family: Arial, sans-serif;
+background: #f4fff4;
+color: #1f2937;
 }
-
-
 
 ⚡ JavaScript Functionality
 
@@ -98,19 +92,18 @@ script.js
 const navLinks = document.querySelectorAll(".nav-links a");
 
 navLinks.forEach((link) => {
-  
+
 });
 
 🌟 Features Demonstrated
 
-| Feature | Description |
-|----------|-------------|
-| Responsive Layout | Adapts across devices |
-| Hero Section | Modern landing page section |
-| Navigation Bar | Interactive menu links |
-| Product Showcase | Plant product display |
-| Clean UI Design | Minimal and modern styling |
-
+| Feature           | Description                 |
+| ----------------- | --------------------------- |
+| Responsive Layout | Adapts across devices       |
+| Hero Section      | Modern landing page section |
+| Navigation Bar    | Interactive menu links      |
+| Product Showcase  | Plant product display       |
+| Clean UI Design   | Minimal and modern styling  |
 
 📸 Preview
 
@@ -130,7 +123,6 @@ Netlify
 Vercel
 GitHub Pages
 
-
 🚀 Future Improvements
 Shopping cart integration
 Product filtering system
@@ -139,7 +131,6 @@ Contact form functionality
 Scroll animations
 Backend integration
 User authentication
-
 
 🤝 Contributing
 
@@ -153,7 +144,6 @@ git commit -m "Add new feature"
 Push to GitHub
 git push origin feature/new-feature
 Open a Pull Request
-
 
 ⭐ Support
 

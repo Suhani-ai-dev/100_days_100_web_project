@@ -47,7 +47,9 @@
   const trayEl = document.querySelector(".shape-tray");
   const svgEl = document.getElementById("vectorSpace");
   const themeToggleBtn = document.querySelector(".theme-toggle-btn");
-  const toolbarButtons = Array.from(document.querySelectorAll(".toolbar-button"));
+  const toolbarButtons = Array.from(
+    document.querySelectorAll(".toolbar-button"),
+  );
 
   if (!viewportEl || !stageEl || !trayEl || !svgEl) return;
 
@@ -61,20 +63,28 @@
       console.warn("Theme preference could not be read:", error);
     }
 
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches
+    return window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches
       ? "light"
       : "dark";
   };
 
-  const getActiveTheme = () => document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  const getActiveTheme = () =>
+    document.documentElement.getAttribute("data-theme") === "light"
+      ? "light"
+      : "dark";
 
   const syncThemeToggleButton = () => {
     if (!themeToggleBtn) return;
 
     const activeTheme = getActiveTheme();
-    const nextLabel = activeTheme === "light" ? "☀️ Light Mode" : "🌙 Dark Mode";
+    const nextLabel =
+      activeTheme === "light" ? "☀️ Light Mode" : "🌙 Dark Mode";
     themeToggleBtn.textContent = nextLabel;
-    themeToggleBtn.setAttribute("aria-label", `Switch to ${activeTheme === "light" ? "dark" : "light"} theme`);
+    themeToggleBtn.setAttribute(
+      "aria-label",
+      `Switch to ${activeTheme === "light" ? "dark" : "light"} theme`,
+    );
   };
 
   const applyTheme = (theme) => {
@@ -106,7 +116,8 @@
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
   const getTemplate = (type) => nodeTemplates[type] ?? nodeTemplates.process;
-  const createNodeId = (type) => `${getTemplate(type).idPrefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+  const createNodeId = (type) =>
+    `${getTemplate(type).idPrefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 
   const syncStageMetrics = () => {
     const rect = viewportEl.getBoundingClientRect();
@@ -216,7 +227,7 @@
     inner.style.gap = "0.15rem";
     inner.style.textAlign = "center";
     // FIX 1: Allow pointer events to interact with text children natively
-    inner.style.pointerEvents = "auto"; 
+    inner.style.pointerEvents = "auto";
 
     if (node.type === "decision") {
       inner.style.transform = "rotate(-45deg)";
@@ -234,7 +245,7 @@
     title.style.minWidth = "120px";
     // FIX 2: Override parent's "userSelect: none" restriction so typing works smoothly
     title.style.userSelect = "text";
-    title.style.webkitUserSelect = "text"; 
+    title.style.webkitUserSelect = "text";
 
     title.addEventListener("pointerdown", (e) => e.stopPropagation());
     title.addEventListener("click", (e) => e.stopPropagation());
@@ -274,11 +285,15 @@
       const port = document.createElement("div");
       port.className = `shape-port shape-port--${dir}`;
       port.dataset.dir = dir;
-      port.addEventListener("pointerdown", (e) => handlePortPointerDown(e, node, dir));
+      port.addEventListener("pointerdown", (e) =>
+        handlePortPointerDown(e, node, dir),
+      );
       element.append(port);
     });
 
-    element.addEventListener("pointerdown", (e) => handleNodePointerDown(e, node));
+    element.addEventListener("pointerdown", (e) =>
+      handleNodePointerDown(e, node),
+    );
     element.addEventListener("click", (e) => e.stopPropagation());
 
     return element;
@@ -290,9 +305,15 @@
       const id = createNodeId(type);
       const nodePosition = position ?? getNodeTemplatePosition(type);
       const node = {
-        id, type, x: nodePosition.x, y: nodePosition.y,
-        width: template.dimensions.width, height: template.dimensions.height,
-        labels: { ...template.labels }, element: null, cache: {}
+        id,
+        type,
+        x: nodePosition.x,
+        y: nodePosition.y,
+        width: template.dimensions.width,
+        height: template.dimensions.height,
+        labels: { ...template.labels },
+        element: null,
+        cache: {},
       };
 
       node.element = createNodeElement(node);
@@ -311,7 +332,9 @@
 
   const createConnection = (fromNodeId, toNodeId) => {
     if (!fromNodeId || !toNodeId || fromNodeId === toNodeId) return null;
-    const isDuplicate = state.connections.some(c => c.fromNodeId === fromNodeId && c.toNodeId === toNodeId);
+    const isDuplicate = state.connections.some(
+      (c) => c.fromNodeId === fromNodeId && c.toNodeId === toNodeId,
+    );
     if (isDuplicate) return null;
 
     const connection = { fromNodeId, toNodeId };
@@ -343,17 +366,25 @@
         const deltaX = arrowEndX - startX;
         const deltaY = arrowEndY - startY;
         const controlX = startX + deltaX / 2;
-        const controlY = startY + deltaY / 2 - Math.max(30, Math.abs(deltaX) * 0.1);
+        const controlY =
+          startY + deltaY / 2 - Math.max(30, Math.abs(deltaX) * 0.1);
 
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("d", `M ${startX} ${startY} Q ${controlX} ${controlY} ${arrowEndX} ${arrowEndY}`);
+        const path = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        path.setAttribute(
+          "d",
+          `M ${startX} ${startY} Q ${controlX} ${controlY} ${arrowEndX} ${arrowEndY}`,
+        );
         path.setAttribute("fill", "none");
         path.setAttribute("stroke-width", "3");
         path.setAttribute("stroke-linecap", "round");
         path.setAttribute("stroke-linejoin", "round");
         path.setAttribute("marker-end", "url(#arrowhead)");
 
-        const strokeColor = index % 2 === 0 ? "var(--accent-blue)" : "var(--accent-cyan)";
+        const strokeColor =
+          index % 2 === 0 ? "var(--accent-blue)" : "var(--accent-cyan)";
         path.style.stroke = strokeColor;
         path.style.color = strokeColor;
 
@@ -362,11 +393,20 @@
       });
 
       // Render the active dragging guideline path
-      if (state.interaction.mode === "connecting" && state.interaction.sourceNodeId) {
+      if (
+        state.interaction.mode === "connecting" &&
+        state.interaction.sourceNodeId
+      ) {
         const fromNode = nodeLookup.get(state.interaction.sourceNodeId);
         if (fromNode) {
-          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-          path.setAttribute("d", `M ${fromNode.cache.centerX} ${fromNode.cache.centerY} L ${state.interaction.tempLineEndX} ${state.interaction.tempLineEndY}`);
+          const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path",
+          );
+          path.setAttribute(
+            "d",
+            `M ${fromNode.cache.centerX} ${fromNode.cache.centerY} L ${state.interaction.tempLineEndX} ${state.interaction.tempLineEndY}`,
+          );
           path.setAttribute("fill", "none");
           path.setAttribute("stroke-width", "3");
           path.setAttribute("stroke-dasharray", "6,6");
@@ -408,8 +448,10 @@
         state.interaction.moved = true;
       }
 
-      const nextX = state.interaction.originX + deltaX / state.viewport.scaleZoom;
-      const nextY = state.interaction.originY + deltaY / state.viewport.scaleZoom;
+      const nextX =
+        state.interaction.originX + deltaX / state.viewport.scaleZoom;
+      const nextY =
+        state.interaction.originY + deltaY / state.viewport.scaleZoom;
       const targetNode = nodeLookup.get(node.id);
 
       if (targetNode) {
@@ -487,8 +529,10 @@
 
     const handleMove = (e) => {
       if (e.pointerId !== state.interaction.pointerId) return;
-      state.viewport.panX = state.interaction.panOriginX + (e.clientX - state.interaction.startX);
-      state.viewport.panY = state.interaction.panOriginY + (e.clientY - state.interaction.startY);
+      state.viewport.panX =
+        state.interaction.panOriginX + (e.clientX - state.interaction.startX);
+      state.viewport.panY =
+        state.interaction.panOriginY + (e.clientY - state.interaction.startY);
       applyViewportTransform();
     };
 
@@ -530,7 +574,9 @@
 
   const handleWorkspaceDrop = (event) => {
     event.preventDefault();
-    const type = event.dataTransfer.getData("text/plain") || state.selection.activeTemplateType;
+    const type =
+      event.dataTransfer.getData("text/plain") ||
+      state.selection.activeTemplateType;
     if (!type) return;
 
     const dropPoint = getStagePoint(event.clientX, event.clientY);
@@ -542,7 +588,11 @@
   };
 
   const zoomViewport = (direction) => {
-    const nextZoom = clamp(state.viewport.scaleZoom + direction * 0.1, 0.45, 2.5);
+    const nextZoom = clamp(
+      state.viewport.scaleZoom + direction * 0.1,
+      0.45,
+      2.5,
+    );
     state.viewport.scaleZoom = Number(nextZoom.toFixed(2));
     applyViewportTransform();
     scheduleRenderConnections();
@@ -557,7 +607,7 @@
   };
 
   const clearWorkspace = () => {
-    state.nodes.forEach(n => n.element?.remove());
+    state.nodes.forEach((n) => n.element?.remove());
     state.nodes = [];
     state.connections = [];
     nodeLookup.clear();

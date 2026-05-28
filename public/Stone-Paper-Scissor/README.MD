@@ -78,6 +78,7 @@ Everything (HTML, CSS, and JavaScript) is contained in a single file for simplic
 ## 🌗 Theme Support
 
 The game includes:
+
 - ☀️ Light Mode
 - 🌙 Dark Mode
 
@@ -88,16 +89,19 @@ Toggle themes using the button at the top-right corner.
 ## 📸 Screenshots
 
 ### 🏠 Home Screen
+
 - Round selection
 - Theme toggle
 - Live scoreboard
 
 ### 🎮 Gameplay Screen
+
 - Interactive choices
 - Animated transitions
 - Round tracker
 
 ### 🏆 Match Result Screen
+
 - Final winner announcement
 - Score summary
 

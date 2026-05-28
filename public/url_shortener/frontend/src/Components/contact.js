@@ -1,15 +1,13 @@
-import  { useState } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Helmet } from "react-helmet";
 
-
 export default function Contact() {
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -19,7 +17,7 @@ export default function Contact() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -39,12 +37,11 @@ export default function Contact() {
         "YOUR_SERVICE_ID",
         "YOUR_TEMPLATE_ID",
         formData,
-        "YOUR_PUBLIC_KEY"
+        "YOUR_PUBLIC_KEY",
       );
 
       setSuccess("Message sent successfully!");
       setFormData({ name: "", email: "", phone: "", message: "" });
-
     } catch (err) {
       setError("Failed to send message");
     } finally {
@@ -75,9 +72,7 @@ export default function Contact() {
       </Helmet>
 
       <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center px-4">
-
         <div className="w-full max-w-xl bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-xl">
-
           <h1 className="text-2xl sm:text-3xl font-semibold mb-6 text-center">
             Contact Us
           </h1>
@@ -86,7 +81,6 @@ export default function Contact() {
           {success && <p className="text-green-500 text-sm mb-4">{success}</p>}
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
             <input
               type="text"
               name="name"
@@ -130,7 +124,6 @@ export default function Contact() {
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
-
           </form>
         </div>
       </div>

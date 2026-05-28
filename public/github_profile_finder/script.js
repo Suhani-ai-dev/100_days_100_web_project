@@ -1,12 +1,25 @@
-const form = document.getElementById("search-form") || document.getElementById("searchForm");
-const input = document.getElementById("username-input") || document.getElementById("usernameInput");
-const statusBox = document.getElementById("status-box") || document.getElementById("statusBox");
-const profileCard = document.getElementById("profile-card") || document.getElementById("profileCard");
-const reposSection = document.getElementById("repos-section") || document.getElementById("reposSection");
-const reposList = document.getElementById("repos-list") || document.getElementById("reposList");
+const form =
+  document.getElementById("search-form") ||
+  document.getElementById("searchForm");
+const input =
+  document.getElementById("username-input") ||
+  document.getElementById("usernameInput");
+const statusBox =
+  document.getElementById("status-box") || document.getElementById("statusBox");
+const profileCard =
+  document.getElementById("profile-card") ||
+  document.getElementById("profileCard");
+const reposSection =
+  document.getElementById("repos-section") ||
+  document.getElementById("reposSection");
+const reposList =
+  document.getElementById("repos-list") || document.getElementById("reposList");
 
-const themeToggle = document.getElementById("theme-toggle") || document.getElementById("themeToggle");
-const themeIcon = document.getElementById("theme-icon") || document.getElementById("themeIcon");
+const themeToggle =
+  document.getElementById("theme-toggle") ||
+  document.getElementById("themeToggle");
+const themeIcon =
+  document.getElementById("theme-icon") || document.getElementById("themeIcon");
 
 const elements = {
   avatar: document.getElementById("avatar"),
@@ -21,7 +34,7 @@ const elements = {
   followers: document.getElementById("followers"),
   following: document.getElementById("following"),
   gists: document.getElementById("gists"),
-  profileLink: document.getElementById("profileLink")
+  profileLink: document.getElementById("profileLink"),
 };
 
 let searchResultsContainer = document.getElementById("searchResultsContainer");
@@ -35,7 +48,7 @@ if (!searchResultsContainer) {
     overflow: hidden;
     border: 1px solid var(--border, #ccc);
   `;
-  
+
   // Defensive check: If form is missing or null, insert relative to profileCard layout container
   if (profileCard && profileCard.parentNode) {
     profileCard.parentNode.insertBefore(searchResultsContainer, profileCard);
@@ -56,7 +69,9 @@ function initTheme() {
   if (savedTheme) {
     document.body.classList.toggle("dark", savedTheme === "dark");
   } else {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     document.body.classList.toggle("dark", prefersDark);
   }
   updateThemeIcon();
@@ -83,7 +98,7 @@ function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString(undefined, {
     year: "numeric",
     month: "short",
-    day: "numeric"
+    day: "numeric",
   });
 }
 
@@ -101,7 +116,9 @@ function renderProfile(user) {
   elements.company.textContent = safeText(user.company);
 
   if (user.blog) {
-    const blogUrl = user.blog.startsWith("http") ? user.blog : `https://${user.blog}`;
+    const blogUrl = user.blog.startsWith("http")
+      ? user.blog
+      : `https://${user.blog}`;
     elements.website.innerHTML = `<a href="${blogUrl}" target="_blank" rel="noreferrer">${user.blog}</a>`;
   } else {
     elements.website.textContent = "—";
@@ -179,8 +196,11 @@ function renderSearchResults(users) {
       <img src="${user.avatar_url}" alt="${user.login}" style="width:36px;height:36px;border-radius:50%;">
       <span>${user.login}</span>
     `;
-    item.addEventListener("mouseover", () => item.style.background = "rgba(128,128,128,0.1)");
-    item.addEventListener("mouseout", () => item.style.background = "");
+    item.addEventListener(
+      "mouseover",
+      () => (item.style.background = "rgba(128,128,128,0.1)"),
+    );
+    item.addEventListener("mouseout", () => (item.style.background = ""));
     item.addEventListener("click", () => {
       input.value = user.login;
       searchResultsContainer.style.display = "none";
@@ -203,23 +223,29 @@ async function fetchUser(username) {
   showLoading();
 
   try {
-    const userResponse = await fetch(`https://api.github.com/users/${encodeURIComponent(cleanName)}`);
+    const userResponse = await fetch(
+      `https://api.github.com/users/${encodeURIComponent(cleanName)}`,
+    );
 
     if (userResponse.ok) {
       const user = await userResponse.json();
       const repoResponse = await fetch(
-        `https://api.github.com/users/${encodeURIComponent(cleanName)}/repos?per_page=100&sort=updated`
+        `https://api.github.com/users/${encodeURIComponent(cleanName)}/repos?per_page=100&sort=updated`,
       );
       const repos = await repoResponse.json();
       const sortedRepos = repos
-        .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.updated_at) - new Date(a.updated_at))
+        .sort(
+          (a, b) =>
+            b.stargazers_count - a.stargazers_count ||
+            new Date(b.updated_at) - new Date(a.updated_at),
+        )
         .slice(0, 6);
       renderProfile(user);
       renderRepos(sortedRepos);
       hideStatus();
     } else {
       const searchResponse = await fetch(
-        `https://api.github.com/search/users?q=${encodeURIComponent(cleanName)}&per_page=10`
+        `https://api.github.com/search/users?q=${encodeURIComponent(cleanName)}&per_page=10`,
       );
 
       if (!searchResponse.ok) {
@@ -261,7 +287,9 @@ if (activeForm) {
     }
   });
 } else {
-  console.warn("Senior Dev Alert: Target search form element could not be found in the DOM structure.");
+  console.warn(
+    "Senior Dev Alert: Target search form element could not be found in the DOM structure.",
+  );
 }
 
 document.querySelectorAll(".quick-btn").forEach((btn) => {
@@ -275,7 +303,10 @@ document.querySelectorAll(".quick-btn").forEach((btn) => {
 
 themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
-  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light",
+  );
   updateThemeIcon();
 });
 

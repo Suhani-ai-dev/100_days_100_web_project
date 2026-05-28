@@ -29,13 +29,13 @@ Answer five quick questions and watch a website rebuild itself to match your tas
 
 ## Quiz Questions
 
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Aesthetic vibe | Minimal · Cyberpunk · Aesthetic · Bold |
-| 2 | Light or dark | Light · Dark |
-| 3 | Signature color | Violet · Rose · Emerald · Amber |
-| 4 | Motion preference | Fluid · Subtle · Slow · None |
-| 5 | Reading style | Compact · Default · Relaxed · Wide |
+| #   | Question          | Options                                |
+| --- | ----------------- | -------------------------------------- |
+| 1   | Aesthetic vibe    | Minimal · Cyberpunk · Aesthetic · Bold |
+| 2   | Light or dark     | Light · Dark                           |
+| 3   | Signature color   | Violet · Rose · Emerald · Amber        |
+| 4   | Motion preference | Fluid · Subtle · Slow · None           |
+| 5   | Reading style     | Compact · Default · Relaxed · Wide     |
 
 ## Author
 

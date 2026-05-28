@@ -14,15 +14,16 @@
 
 /* ---------- Custom Properties ---------- */
 :root {
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --page-bg-start: #201b44;
   --page-bg-mid: #0f122a;
   --page-bg-end: #080a1e;
 
-  --glass-bg: rgba(18, 32, 58, 0.70);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-shadow: 0 24px 60px rgba(5, 9, 25, 0.40);
+  --glass-bg: rgba(18, 32, 58, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 24px 60px rgba(5, 9, 25, 0.4);
 
   --text-primary: #f7f8ff;
   --text-muted: rgba(247, 249, 255, 0.65);
@@ -40,7 +41,7 @@
   --danger: #ef4444;
   --warning: #f59e0b;
 
-  --transition: 0.30s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ---------- Base ---------- */
@@ -53,7 +54,12 @@ body {
   font-family: var(--font-family);
   line-height: 1.6;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--page-bg-start) 0%, var(--page-bg-mid) 45%, var(--page-bg-end) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--page-bg-start) 0%,
+    var(--page-bg-mid) 45%,
+    var(--page-bg-end) 100%
+  );
   overflow-x: hidden;
   transition: background var(--transition);
 }
@@ -125,10 +131,19 @@ body {
 }
 
 @keyframes floatShape {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -40px) scale(1.05); }
-  50% { transform: translate(-20px, 20px) scale(0.95); }
-  75% { transform: translate(40px, 30px) scale(1.02); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(40px, 30px) scale(1.02);
+  }
 }
 
 /* ---------- Header / Navigation ---------- */
@@ -181,7 +196,9 @@ header {
   padding: 10px 20px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.06);
-  transition: background var(--transition), transform var(--transition);
+  transition:
+    background var(--transition),
+    transform var(--transition);
   font-weight: 500;
   font-size: 15px;
   display: inline-block;
@@ -209,22 +226,35 @@ header {
 .theme-btn {
   height: 40px;
   width: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.30);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   cursor: pointer;
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
   position: relative;
 }
 
-#colour1 { background: #7c63ff; }
-#colour2 { background: #4f8dff; }
-#colour3 { background: #14b8a6; }
-#colour4 { background: #d57b1b; }
-#colour5 { background: #ef4444; }
+#colour1 {
+  background: #7c63ff;
+}
+#colour2 {
+  background: #4f8dff;
+}
+#colour3 {
+  background: #14b8a6;
+}
+#colour4 {
+  background: #d57b1b;
+}
+#colour5 {
+  background: #ef4444;
+}
 
 .theme-btn:hover {
-  transform: scale(1.20);
-  border-color: rgba(255, 255, 255, 0.80);
+  transform: scale(1.2);
+  border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 24px rgba(255, 255, 255, 0.15);
 }
 
@@ -307,7 +337,7 @@ section {
 .progress-bar-track {
   flex: 1;
   height: 8px;
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 100px;
   overflow: hidden;
 }
@@ -360,7 +390,9 @@ section {
   font-size: 15px;
   font-family: var(--font-family);
   outline: none;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 #task-category {
@@ -401,14 +433,16 @@ section {
   font-weight: 700;
   font-family: var(--font-family);
   background: var(--accent-gradient);
-  box-shadow: 0 8px 24px rgba(78, 98, 254, 0.30);
-  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 8px 24px rgba(78, 98, 254, 0.3);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
   white-space: nowrap;
 }
 
 #submittask:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(78, 98, 254, 0.40);
+  box-shadow: 0 12px 32px rgba(78, 98, 254, 0.4);
 }
 
 #submittask:active {
@@ -433,7 +467,9 @@ section {
   font-family: var(--font-family);
   background: linear-gradient(135deg, #ff8276, #ffb86b);
   box-shadow: 0 8px 24px rgba(255, 128, 109, 0.24);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 #savepdf:hover {
@@ -496,7 +532,9 @@ section {
   box-shadow: 0 12px 40px rgba(9, 15, 45, 0.12);
   color: var(--text-dark);
   overflow-wrap: break-word;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
   animation: fadeInUp 0.4s ease forwards;
   opacity: 0;
   animation-delay: calc(var(--i, 0) * 0.05s);
@@ -507,7 +545,7 @@ section {
 
 .notes:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 56px rgba(9, 15, 45, 0.20);
+  box-shadow: 0 20px 56px rgba(9, 15, 45, 0.2);
 }
 
 @keyframes fadeInUp {
@@ -555,27 +593,29 @@ section {
   color: #0d1631;
   padding: 10px 14px;
   border-radius: 14px;
-  background: rgba(245, 247, 250, 0.80);
+  background: rgba(245, 247, 250, 0.8);
   border: 1px solid rgba(16, 24, 56, 0.06);
   outline: none;
   min-height: 44px;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .note-text:focus {
   border-color: rgba(124, 99, 255, 0.45);
-  box-shadow: 0 0 0 3px rgba(124, 99, 255, 0.10);
+  box-shadow: 0 0 0 3px rgba(124, 99, 255, 0.1);
 }
 
 /* ---------- Completed Animation ---------- */
 .completed {
   text-decoration: line-through;
-  opacity: 0.60;
+  opacity: 0.6;
   position: relative;
 }
 
 .completed::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
@@ -588,8 +628,12 @@ section {
 }
 
 @keyframes strikeThrough {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* ---------- Actions (Dropdown + Buttons) ---------- */
@@ -631,7 +675,10 @@ section {
   font-weight: 700;
   font-size: 14px;
   font-family: var(--font-family);
-  transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    opacity var(--transition),
+    box-shadow var(--transition);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -696,7 +743,9 @@ section {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: transform var(--transition), background var(--transition);
+  transition:
+    transform var(--transition),
+    background var(--transition);
   animation: fadeInUp 0.4s ease forwards;
 }
 
@@ -721,7 +770,10 @@ section {
 
 .document-item button {
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), transform var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
   padding: 8px 16px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -752,7 +804,7 @@ section {
   z-index: 1000;
   font-weight: 600;
   font-size: 15px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
   animation: slideInRight 0.4s ease;
 }
 

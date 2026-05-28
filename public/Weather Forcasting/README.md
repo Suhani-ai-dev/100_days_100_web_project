@@ -81,9 +81,9 @@ your-project/
 
 ## API Reference
 
-| API | Purpose | Cost |
-|-----|---------|------|
-| [Open-Meteo Forecast API](https://api.open-meteo.com) | Live weather data | Free |
+| API                                                              | Purpose                 | Cost |
+| ---------------------------------------------------------------- | ----------------------- | ---- |
+| [Open-Meteo Forecast API](https://api.open-meteo.com)            | Live weather data       | Free |
 | [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com) | City name → coordinates | Free |
 
 ---

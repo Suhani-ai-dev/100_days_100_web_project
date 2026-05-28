@@ -13,15 +13,13 @@ Beginner-friendly structure
 Pure HTML, CSS, and JavaScript
 Easy customization
 
-
 🛠️ Tech Stack
 
-| Technology | Usage |
-|------------|-------|
-| HTML5      | Structure |
-| CSS3       | Styling & Animations |
+| Technology | Usage                  |
+| ---------- | ---------------------- |
+| HTML5      | Structure              |
+| CSS3       | Styling & Animations   |
 | JavaScript | Progress Functionality |
-
 
 📂 Project Structure
 
@@ -35,7 +33,6 @@ progress-bar/
 ├── script.js
 └── README.md
 ```
-
 
 ⚙️ Installation & Setup
 
@@ -51,9 +48,9 @@ You can also use a local development server such as:
 
 VS Code Live Server Extension
 
-
 🧠 HTML Structure
 index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,25 +69,22 @@ index.html
 </body>
 </html>
 
-
-
 🎨 CSS Styling
 style.css
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+font-family: Arial, sans-serif;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
 }
 
 .container {
-  width: 400px;
-  text-align: center;
+width: 400px;
+text-align: center;
 }
-
 
 ⚡ JavaScript Functionality
 script.js
@@ -98,13 +92,11 @@ let progress = 0;
 
 function increaseProgress() {}
 
-
 📸 Preview
 
 Add project preview image inside:
 
 assets/preview.png
-
 
 🌟 How It Works
 
@@ -112,7 +104,6 @@ The progress bar starts at 0%
 Clicking the button increases progress
 JavaScript dynamically updates width
 CSS transition creates smooth animation
-
 
 🚀 Future Improvements
 
@@ -136,7 +127,6 @@ Netlify
 Vercel
 GitHub Pages
 
-
 🤝 Contributing
 
 Contributions are welcome.
@@ -149,7 +139,6 @@ git commit -m "Add new feature"
 Push to GitHub
 git push origin feature/new-feature
 Open a Pull Request
-
 
 ⭐ Support
 

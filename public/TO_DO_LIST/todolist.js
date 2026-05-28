@@ -1,10 +1,9 @@
-
 // 1. DOM Element References (match HTML ids/classes)
 const taskInput = document.getElementById("task");
 const taskTypeSelect = document.getElementById("task-category");
 const taskList = document.getElementById("notes-container");
 const emptyState = document.getElementById("emptyState");
-const documentsList = document.querySelector('.documents-list');
+const documentsList = document.querySelector(".documents-list");
 
 // Progress / stats elements present in HTML
 const progressFill = document.getElementById("progressFill");
@@ -18,7 +17,7 @@ let currentFilter = "all";
 function addTask() {
   const text = taskInput.value.trim();
   const category = taskTypeSelect.value;
-  
+
   if (!text) {
     showToast("⚠️ Please enter a task description!");
     return;
@@ -26,7 +25,11 @@ function addTask() {
 
   // Find category color from the dropdown configuration (fallback)
   const selectedOption = taskTypeSelect.options[taskTypeSelect.selectedIndex];
-  const color = (selectedOption && selectedOption.getAttribute && selectedOption.getAttribute("data-color")) || "#ffb86b";
+  const color =
+    (selectedOption &&
+      selectedOption.getAttribute &&
+      selectedOption.getAttribute("data-color")) ||
+    "#ffb86b";
 
   // Create local task object
   const newTask = {
@@ -34,19 +37,19 @@ function addTask() {
     text: text,
     category: category || "Misc",
     color: color,
-    completed: false
+    completed: false,
   };
 
   tasks.push(newTask);
   taskInput.value = "";
   taskTypeSelect.value = ""; // Reset dropdown
-  
+
   renderTasks();
   showToast("✅ Task added successfully!");
 }
 
 function toggleTask(id) {
-  tasks = tasks.map(task => {
+  tasks = tasks.map((task) => {
     if (task.id === id) return { ...task, completed: !task.completed };
     return task;
   });
@@ -59,7 +62,7 @@ function deleteTask(id) {
   if (card) {
     card.style.animation = "fadeOut 0.25s ease forwards";
     setTimeout(() => {
-      tasks = tasks.filter(task => task.id !== id);
+      tasks = tasks.filter((task) => task.id !== id);
       renderTasks();
     }, 250);
   }
@@ -67,7 +70,7 @@ function deleteTask(id) {
 
 function clearDone() {
   const previousLength = tasks.length;
-  tasks = tasks.filter(task => !task.completed);
+  tasks = tasks.filter((task) => !task.completed);
   if (tasks.length === previousLength) {
     showToast("ℹ️ No completed tasks to clear.");
   } else {
@@ -79,16 +82,18 @@ function clearDone() {
 // 3. Filtering & Rendering UI
 function filterTasks(buttonElement, filterValue) {
   // Update active states on filter row
-  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach((btn) => btn.classList.remove("active"));
   buttonElement.classList.add("active");
-  
+
   currentFilter = filterValue;
   renderTasks();
 }
 
 function renderTasks() {
   // Filter core task pool
-  const filteredTasks = tasks.filter(task => {
+  const filteredTasks = tasks.filter((task) => {
     if (currentFilter === "all") return true;
     if (currentFilter === "pending") return !task.completed;
     if (currentFilter === "done") return task.completed;
@@ -118,7 +123,7 @@ function renderTasks() {
           <div class="note-actions">
             <div class="category-badge">${task.category}</div>
             <div>
-              <button class="note-check" onclick="toggleTask(${task.id})">${task.completed ? '✓' : '✔'}</button>
+              <button class="note-check" onclick="toggleTask(${task.id})">${task.completed ? "✓" : "✔"}</button>
               <button class="note-delete" onclick="deleteTask(${task.id})">Delete</button>
             </div>
           </div>
@@ -132,15 +137,16 @@ function renderTasks() {
 }
 
 function updateTaskText(id, newText) {
-  tasks = tasks.map(task => {
-    if (task.id === id) return { ...task, text: newText.trim() || "Untitled Task" };
+  tasks = tasks.map((task) => {
+    if (task.id === id)
+      return { ...task, text: newText.trim() || "Untitled Task" };
     return task;
   });
 }
 
 function updateMetrics() {
   const total = tasks.length;
-  const done = tasks.filter(t => t.completed).length;
+  const done = tasks.filter((t) => t.completed).length;
   const pct = total === 0 ? 0 : Math.round((done / total) * 100);
 
   // Update progress UI (matches HTML)
@@ -170,24 +176,25 @@ function applyTheme(themeName) {
     "theme2",
     "theme3",
     "theme4",
-    "theme5"
+    "theme5",
   );
 
   document.body.classList.add(themeName);
 
-  document.querySelectorAll(".theme-btn")
-    .forEach(btn => btn.classList.remove("active"));
+  document
+    .querySelectorAll(".theme-btn")
+    .forEach((btn) => btn.classList.remove("active"));
 
-  const activeBtn = document.querySelector(
-    `[data-theme="${themeName}"]`
-  );
+  const activeBtn = document.querySelector(`[data-theme="${themeName}"]`);
 
   if (activeBtn) {
     activeBtn.classList.add("active");
   }
-  try { localStorage.setItem('todo-theme', themeName); } catch (e) {}
+  try {
+    localStorage.setItem("todo-theme", themeName);
+  } catch (e) {}
 }
-document.querySelectorAll(".theme-btn").forEach(button => {
+document.querySelectorAll(".theme-btn").forEach((button) => {
   button.addEventListener("click", () => {
     const theme = button.dataset.theme;
     if (!theme) return;
@@ -208,7 +215,7 @@ function saveAsPDF() {
   doc.setFont("Helvetica", "bold");
   doc.setFontSize(22);
   doc.text("TaskFlow Agenda Report", 20, 24);
-  
+
   doc.setFont("Helvetica", "normal");
   doc.setFontSize(10);
   doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 32);
@@ -220,14 +227,14 @@ function saveAsPDF() {
   tasks.forEach((task, index) => {
     const status = task.completed ? "[DONE]" : "[PENDING]";
     const printLine = `${index + 1}. ${status} (${task.category}) — ${task.text}`;
-    
+
     doc.text(20, verticalCursor, printLine);
     verticalCursor += 10;
   });
 
   const fileName = `TaskFlow_${Date.now()}.pdf`;
   const fileURL = URL.createObjectURL(doc.output("blob"));
-  
+
   appendDocumentToList(fileName, fileURL);
   showToast("📥 Exported list to Documents Tab!");
 }
@@ -268,7 +275,7 @@ function showToast(message) {
   const toast = document.getElementById("toast");
   if (!toast) {
     // Fallback for standalone page: simple console/log
-    console.log('Toast:', message);
+    console.log("Toast:", message);
     return;
   }
   toast.innerText = message;
@@ -280,9 +287,9 @@ function showToast(message) {
 
 // Listen for enter key in the input element
 // Form submit handler + Enter key
-const taskForm = document.getElementById('task-form');
+const taskForm = document.getElementById("task-form");
 if (taskForm) {
-  taskForm.addEventListener('submit', (e) => {
+  taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
     addTask();
   });
@@ -297,6 +304,6 @@ taskInput.addEventListener("keydown", (e) => {
 
 // Load saved theme if present
 try {
-  const saved = localStorage.getItem('todo-theme');
+  const saved = localStorage.getItem("todo-theme");
   if (saved) applyTheme(saved);
 } catch (e) {}

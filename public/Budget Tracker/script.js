@@ -15,7 +15,7 @@ const categoryEls = {
   food: document.querySelector('[data-cat="food"]'),
   travel: document.querySelector('[data-cat="travel"]'),
   shopping: document.querySelector('[data-cat="shopping"]'),
-  other: document.querySelector('[data-cat="other"]')
+  other: document.querySelector('[data-cat="other"]'),
 };
 
 const budgetInput = document.getElementById("budgetInput");
@@ -32,11 +32,14 @@ let monthlyBudget = 0;
 /* ---------- DARK MODE ---------- */
 modeToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark");
-  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light",
+  );
 });
 
 /* ---------- ADD TRANSACTION ---------- */
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const transaction = {
@@ -45,7 +48,7 @@ form.addEventListener("submit", e => {
     description: descInput.value.trim(),
     category: categoryInput.value,
     type: categoryInput.value === "income" ? "income" : "expense",
-    date: dateInput.value
+    date: dateInput.value,
   };
 
   transactions.push(transaction);
@@ -61,7 +64,7 @@ form.addEventListener("submit", e => {
 function renderTransactions() {
   transactionList.innerHTML = "";
 
-  transactions.forEach(txn => {
+  transactions.forEach((txn) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${txn.date}</td>
@@ -75,20 +78,21 @@ function renderTransactions() {
 }
 
 /* ---------- DELETE ---------- */
-transactionList.addEventListener("click", e => {
+transactionList.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     const id = Number(e.target.dataset.id);
-    transactions = transactions.filter(txn => txn.id !== id);
+    transactions = transactions.filter((txn) => txn.id !== id);
     saveAndUpdate();
   }
 });
 
 /* ---------- SUMMARY ---------- */
 function updateSummary() {
-  let income = 0, expense = 0;
+  let income = 0,
+    expense = 0;
 
-  transactions.forEach(txn => {
-    txn.type === "income" ? income += txn.amount : expense += txn.amount;
+  transactions.forEach((txn) => {
+    txn.type === "income" ? (income += txn.amount) : (expense += txn.amount);
   });
 
   balanceEl.textContent = `₹${income - expense}`;
@@ -100,11 +104,11 @@ function updateSummary() {
 function updateCategories() {
   const totals = { food: 0, travel: 0, shopping: 0, other: 0 };
 
-  transactions.forEach(txn => {
+  transactions.forEach((txn) => {
     if (txn.type === "expense") totals[txn.category] += txn.amount;
   });
 
-  Object.keys(totals).forEach(cat => {
+  Object.keys(totals).forEach((cat) => {
     categoryEls[cat].textContent = `₹${totals[cat]}`;
   });
 }
@@ -118,11 +122,13 @@ budgetInput.addEventListener("input", () => {
 
 function updateBudget() {
   const expense = transactions
-    .filter(t => t.type === "expense")
+    .filter((t) => t.type === "expense")
     .reduce((sum, t) => sum + t.amount, 0);
 
   budgetText.textContent = `₹${expense} / ₹${monthlyBudget}`;
-  progressFill.style.width = monthlyBudget ? `${Math.min((expense / monthlyBudget) * 100, 100)}%` : "0%";
+  progressFill.style.width = monthlyBudget
+    ? `${Math.min((expense / monthlyBudget) * 100, 100)}%`
+    : "0%";
 }
 
 /* ---------- INSIGHTS ---------- */
@@ -131,7 +137,7 @@ function updateInsights() {
   let totalExpense = 0;
   let totalIncome = 0;
 
-  transactions.forEach(txn => {
+  transactions.forEach((txn) => {
     if (txn.type === "expense") {
       if (totals[txn.category] !== undefined) {
         totals[txn.category] += txn.amount;
@@ -150,7 +156,7 @@ function updateInsights() {
 
   let maxCat = "";
   let maxAmount = 0;
-  Object.keys(totals).forEach(cat => {
+  Object.keys(totals).forEach((cat) => {
     if (totals[cat] > maxAmount) {
       maxAmount = totals[cat];
       maxCat = cat;
@@ -158,7 +164,10 @@ function updateInsights() {
   });
 
   if (maxAmount > 0) {
-    const formattedCat = maxCat === "other" ? "Others" : maxCat.charAt(0).toUpperCase() + maxCat.slice(1);
+    const formattedCat =
+      maxCat === "other"
+        ? "Others"
+        : maxCat.charAt(0).toUpperCase() + maxCat.slice(1);
     highestSpendingCatEl.textContent = `${formattedCat} (₹${maxAmount})`;
   } else {
     highestSpendingCatEl.textContent = "None";
@@ -167,13 +176,17 @@ function updateInsights() {
   let suggestion = "Add transactions to generate suggestions.";
   if (maxAmount > 0) {
     if (maxCat === "food") {
-      suggestion = "You spent more on food this month. Consider cooking at home to save money.";
+      suggestion =
+        "You spent more on food this month. Consider cooking at home to save money.";
     } else if (maxCat === "travel") {
-      suggestion = "You spent more on travel this month. Consider using public transport or carpooling.";
+      suggestion =
+        "You spent more on travel this month. Consider using public transport or carpooling.";
     } else if (maxCat === "shopping") {
-      suggestion = "You spent more on shopping this month. Try waiting 48 hours before buying non-essential items.";
+      suggestion =
+        "You spent more on shopping this month. Try waiting 48 hours before buying non-essential items.";
     } else if (maxCat === "other") {
-      suggestion = "You spent more on other items. Try tracking smaller expenses to see where your money goes.";
+      suggestion =
+        "You spent more on other items. Try tracking smaller expenses to see where your money goes.";
     }
   }
   smartSuggestionEl.textContent = suggestion;

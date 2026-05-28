@@ -19,10 +19,10 @@ function analyzeSMS() {
     { k: "pin", w: 3, t: "PIN request" },
     { k: "click", w: 2, t: "Suspicious link prompt" },
     { k: "verify", w: 2, t: "Fake verification attempt" },
-    { k: "lottery", w: 3, t: "Scam reward bait" }
+    { k: "lottery", w: 3, t: "Scam reward bait" },
   ];
 
-  rules.forEach(r => {
+  rules.forEach((r) => {
     if (text.includes(r.k)) {
       score += r.w;
       tags.push(r.t);
@@ -36,8 +36,9 @@ function analyzeSMS() {
   document.getElementById("score").innerText =
     `Risk Score: ${Math.round(risk)}%`;
 
-  document.getElementById("tags").innerText =
-    tags.length ? "Detected: " + tags.join(" • ") : "No suspicious patterns detected";
+  document.getElementById("tags").innerText = tags.length
+    ? "Detected: " + tags.join(" • ")
+    : "No suspicious patterns detected";
 
   let bar = document.getElementById("bar");
   bar.style.width = risk + "%";

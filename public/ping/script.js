@@ -15,7 +15,7 @@ const user = {
   width: 10,
   height: 100,
   color: "red",
-  score: 0
+  score: 0,
 };
 
 // CREATE COMPUTER PADDLE
@@ -25,7 +25,7 @@ const computer = {
   width: 10,
   height: 100,
   color: "black",
-  score: 0
+  score: 0,
 };
 
 // CREATE THE BALL
@@ -36,7 +36,7 @@ const ball = {
   speed: 5,
   velocityX: 5,
   velocityY: 5,
-  color: "white"
+  color: "white",
 };
 
 // CREATE THE NET
@@ -45,7 +45,7 @@ const net = {
   y: 0,
   width: 2,
   height: 10,
-  color: "white"
+  color: "white",
 };
 
 restartBtn.addEventListener("click", () => {
@@ -62,7 +62,13 @@ function drawNet() {
   const netSpacing = 15;
 
   for (let i = 0; i <= canvas.height; i += netSpacing) {
-    drawRectangle(net.x - netWidth / 2, net.y + i, netWidth, net.height, net.color);
+    drawRectangle(
+      net.x - netWidth / 2,
+      net.y + i,
+      netWidth,
+      net.height,
+      net.color,
+    );
   }
 }
 
@@ -102,7 +108,13 @@ function render() {
 
   // DRAW THE USER AND COMPUTER PADDLES
   drawRectangle(user.x, user.y, user.width, user.height, user.color);
-  drawRectangle(computer.x, computer.y, computer.width, computer.height, computer.color);
+  drawRectangle(
+    computer.x,
+    computer.y,
+    computer.width,
+    computer.height,
+    computer.color,
+  );
 
   // DRAW THE BALL
   drawCircle(ball.x, ball.y, ball.radius, ball.color);
@@ -131,7 +143,9 @@ function collision(b, p) {
   p.left = p.x;
   p.right = p.x + p.width;
 
-  return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
+  return (
+    b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom
+  );
 }
 
 // RESET BALL FUNCTION
@@ -157,7 +171,7 @@ function update() {
   }
 
   // PADDLE COLLISION
-  let player = (ball.x < canvas.width / 2) ? user : computer;
+  let player = ball.x < canvas.width / 2 ? user : computer;
 
   if (collision(ball, player)) {
     // WHERE THE BALL HIT THE PLAYER
@@ -167,10 +181,10 @@ function update() {
     collidePoint = collidePoint / (player.height / 2);
 
     // CALCULATE THE ANGLE IN RADIAN
-    let angleRad = collidePoint * Math.PI / 4;
+    let angleRad = (collidePoint * Math.PI) / 4;
 
     // X DIRECTION OF THE BALL WHEN IT'S HIT
-    let direction = (ball.x < canvas.width / 2) ? 1 : -1;
+    let direction = ball.x < canvas.width / 2 ? 1 : -1;
 
     // CHANGE VELOCITY OF X AND Y
     ball.velocityX = direction * ball.speed * Math.cos(angleRad);

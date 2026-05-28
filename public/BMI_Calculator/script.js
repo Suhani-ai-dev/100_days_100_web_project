@@ -1,27 +1,26 @@
 // ─── Theme Toggle with localStorage persistence ───
 (function initTheme() {
+  const themeBtn = document.getElementById("theme-toggle");
+  const STORAGE_KEY = "bmi-theme";
 
-    const themeBtn = document.getElementById("theme-toggle");
-    const STORAGE_KEY = "bmi-theme";
+  function getPreferred() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
 
-    function getPreferred() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) return saved;
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-    }
+  function applyTheme(theme) {
+    document.body.classList.toggle("dark", theme === "dark");
+  }
 
-    function applyTheme(theme) {
-        document.body.classList.toggle("dark", theme === "dark");
-    }
+  applyTheme(getPreferred());
 
-    applyTheme(getPreferred());
-
-    themeBtn.addEventListener("click", () => {
-        const isDark = document.body.classList.toggle("dark");
-        localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
-    });
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
+  });
 
   const themeBtn = document.getElementById("theme-toggle");
   const STORAGE_KEY = "bmi-theme";
@@ -47,7 +46,6 @@
     const isDark = document.body.classList.toggle("dark");
     localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
   });
-
 })();
 
 const heightUnitEl = document.getElementById("height-unit");
@@ -119,16 +117,15 @@ function calcHealthyWeight(heightCm) {
 }
 
 function bmiToPercent(bmi) {
-
-    const MIN = 10, MAX = 45;
-    const clamped = Math.min(Math.max(bmi, MIN), MAX);
-    return ((clamped - MIN) / (MAX - MIN)) * 100;
-
   const MIN = 10,
     MAX = 45;
   const clamped = Math.min(Math.max(bmi, MIN), MAX);
   return ((clamped - MIN) / (MAX - MIN)) * 100;
 
+  const MIN = 10,
+    MAX = 45;
+  const clamped = Math.min(Math.max(bmi, MIN), MAX);
+  return ((clamped - MIN) / (MAX - MIN)) * 100;
 }
 
 // ─── Chart.js setup ───
@@ -182,22 +179,22 @@ const BMI_DATA_KEY = "bmi-history-data";
 
 // ─── Load saved history on page load ───
 (function loadHistory() {
-    const savedLabels = JSON.parse(localStorage.getItem(BMI_LABELS_KEY) || "[]");
-    const savedData = JSON.parse(localStorage.getItem(BMI_DATA_KEY) || "[]");
-    if (savedLabels.length > 0) {
-        bmiChart.data.labels = savedLabels;
-        bmiChart.data.datasets[0].data = savedData;
-        bmiChart.update();
-    }
+  const savedLabels = JSON.parse(localStorage.getItem(BMI_LABELS_KEY) || "[]");
+  const savedData = JSON.parse(localStorage.getItem(BMI_DATA_KEY) || "[]");
+  if (savedLabels.length > 0) {
+    bmiChart.data.labels = savedLabels;
+    bmiChart.data.datasets[0].data = savedData;
+    bmiChart.update();
+  }
 })();
 
 // ─── Clear History ───
 document.getElementById("clear-history").addEventListener("click", () => {
-    localStorage.removeItem(BMI_LABELS_KEY);
-    localStorage.removeItem(BMI_DATA_KEY);
-    bmiChart.data.labels = [];
-    bmiChart.data.datasets[0].data = [];
-    bmiChart.update();
+  localStorage.removeItem(BMI_LABELS_KEY);
+  localStorage.removeItem(BMI_DATA_KEY);
+  bmiChart.data.labels = [];
+  bmiChart.data.datasets[0].data = [];
+  bmiChart.update();
 });
 
 // ─── Unit label updates ───
@@ -383,10 +380,9 @@ btn.addEventListener("click", () => {
   }
 });
 
-
-document.querySelectorAll('input[type=number]').forEach(function(el) {
-  el.addEventListener('wheel', function(e) {
-    el.blur();  // lose focus so scroll doesn't change the value
+document.querySelectorAll("input[type=number]").forEach(function (el) {
+  el.addEventListener("wheel", function (e) {
+    el.blur(); // lose focus so scroll doesn't change the value
   });
 });
 // ─── Body Fat Classification ───

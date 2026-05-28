@@ -37,81 +37,82 @@ let lastGeneratedData = "";
 let currentTheme = "aurora";
 
 const themeColors = {
-    aurora: "#a78bfa",
-    neon: "#00ff88",
-    dark: "#d4d4d4",
-    candy: "#e91e8c"
+  aurora: "#a78bfa",
+  neon: "#00ff88",
+  dark: "#d4d4d4",
+  candy: "#e91e8c",
 };
 
 function setStatus(msg, error = false) {
-    statusMessage.textContent = msg;
-    statusMessage.style.color = error ? "red" : "";
+  statusMessage.textContent = msg;
+  statusMessage.style.color = error ? "red" : "";
 }
 
 function escapeText(text) {
-    return text.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,");
+  return text.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,");
 }
 
 function updateInputFields() {
-    const type = qrType.value;
+  const type = qrType.value;
 
-    inputText.style.display = (type === "text" || type === "url") ? "block" : "none";
-    inputLabel.style.display = (type === "text" || type === "url") ? "block" : "none";
+  inputText.style.display =
+    type === "text" || type === "url" ? "block" : "none";
+  inputLabel.style.display =
+    type === "text" || type === "url" ? "block" : "none";
 
-    wifiInputs.style.display = type === "wifi" ? "block" : "none";
-    vcardInputs.style.display = type === "vcard" ? "block" : "none";
+  wifiInputs.style.display = type === "wifi" ? "block" : "none";
+  vcardInputs.style.display = type === "vcard" ? "block" : "none";
 }
 
 function collectQrData() {
-    const type = qrType.value;
+  const type = qrType.value;
 
-    if (type === "text") return { data: inputText.value.trim() };
-    if (type === "url") return { data: inputText.value.trim() };
+  if (type === "text") return { data: inputText.value.trim() };
+  if (type === "url") return { data: inputText.value.trim() };
 
-    if (type === "wifi") {
-        const ssid = wifiSSID.value.trim();
-        const pass = wifiPassword.value;
-        const enc = wifiEncryption.value;
-        return { data: `WIFI:T:${enc};S:${ssid};P:${pass};;` };
-    }
+  if (type === "wifi") {
+    const ssid = wifiSSID.value.trim();
+    const pass = wifiPassword.value;
+    const enc = wifiEncryption.value;
+    return { data: `WIFI:T:${enc};S:${ssid};P:${pass};;` };
+  }
 
-    if (type === "vcard") {
-        return {
-            data:
-`BEGIN:VCARD
+  if (type === "vcard") {
+    return {
+      data: `BEGIN:VCARD
 VERSION:3.0
 FN:${vcardName.value}
 TEL:${vcardPhone.value}
 EMAIL:${vcardEmail.value}
 URL:${vcardWebsite.value}
-END:VCARD`
-        };
-    }
+END:VCARD`,
+    };
+  }
 
-    return { error: "Invalid type" };
+  return { error: "Invalid type" };
 }
 
 function generateQRCode() {
-    qrcodeDiv.innerHTML = "";
+  qrcodeDiv.innerHTML = "";
 
-    const result = collectQrData();
-    if (result.error) {
-        setStatus(result.error, true);
-        return;
-    }
+  const result = collectQrData();
+  if (result.error) {
+    setStatus(result.error, true);
+    return;
+  }
 
-    lastGeneratedData = result.data;
+  lastGeneratedData = result.data;
 
-    new QRCode(qrcodeDiv, {
-        text: result.data,
-        width: 200,
-        height: 200,
-        colorDark: qrColor.value,
-        colorLight: "#fff",
-        correctLevel: QRCode.CorrectLevel[errorCorrection.value]
-    });
+  new QRCode(qrcodeDiv, {
+    text: result.data,
+    width: 200,
+    height: 200,
+    colorDark: qrColor.value,
+    colorLight: "#fff",
+    correctLevel: QRCode.CorrectLevel[errorCorrection.value],
+  });
 
-    setStatus("QR generated");
+  setStatus("QR generated");
 }
 
 qrType.addEventListener("change", updateInputFields);
@@ -119,22 +120,22 @@ qrType.addEventListener("change", updateInputFields);
 generateBtn.addEventListener("click", generateQRCode);
 
 downloadBtn.addEventListener("click", () => {
-    const img = qrcodeDiv.querySelector("img");
-    if (!img) return;
+  const img = qrcodeDiv.querySelector("img");
+  if (!img) return;
 
-    const a = document.createElement("a");
-    a.download = "qr.png";
-    a.href = img.src;
-    a.click();
+  const a = document.createElement("a");
+  a.download = "qr.png";
+  a.href = img.src;
+  a.click();
 });
 
 scanBtn.addEventListener("click", () => {
-    qrReaderResults.innerHTML = `<pre>${lastGeneratedData}</pre>`;
+  qrReaderResults.innerHTML = `<pre>${lastGeneratedData}</pre>`;
 });
 
 copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(inputText.value);
-    message.innerText = "Copied!";
+  navigator.clipboard.writeText(inputText.value);
+  message.innerText = "Copied!";
 });
 
 updateInputFields();

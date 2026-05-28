@@ -5,18 +5,21 @@ A beautiful, minimalist typing speed test application built with vanilla HTML, C
 ## 🎯 Features
 
 ### Core Functionality
+
 - **Real-time Typing Test**: Type randomized sentences and get instant visual feedback
 - **Live Statistics**: Watch your WPM, accuracy, and character count update as you type
 - **Stopwatch Timer**: Built-in timer to track how long your test takes
 - **Randomized Sentences**: 15 diverse sentences that shuffle randomly each test
 
 ### Visual Feedback
+
 - ✅ **Correct characters** turn **green**
 - ❌ **Wrong characters** turn **red** with a highlight
 - 🔵 **Current character** shows with a blue cursor that blinks
 - Untyped text appears in muted gray
 
 ### Design & UX
+
 - **Dark/Light Mode Toggle**: Easy on the eyes - switch themes with a button click (top-right corner)
 - **Theme Persistence**: Your preferred theme is saved to your browser
 - **Minimalist Aesthetic**: Clean, breathing interface with smooth animations
@@ -24,7 +27,9 @@ A beautiful, minimalist typing speed test application built with vanilla HTML, C
 - **Smooth Animations**: Fade-in effects and micro-interactions for polish
 
 ### Results Dashboard
+
 After completing a test, view detailed statistics:
+
 - **Words Per Minute (WPM)**: Your typing speed
 - **Accuracy %**: Percentage of correctly typed characters
 - **Time Taken**: Duration of the test
@@ -41,6 +46,7 @@ After completing a test, view detailed statistics:
 7. **Try again**: Click "TRY AGAIN" to get a new random sentence and test again
 
 ### Controls
+
 - **Start Test**: Begin a new typing test
 - **Reset**: Clear your current input and reset the interface
 - **Try Again**: After test completion, start a fresh test
@@ -49,26 +55,33 @@ After completing a test, view detailed statistics:
 ## 📊 How Stats Are Calculated
 
 ### WPM (Words Per Minute)
+
 ```
 WPM = (Characters Typed / 5) / (Time in Minutes)
 ```
+
 The standard formula where 5 characters = 1 word.
 
 ### Accuracy
+
 ```
 Accuracy = (Correct Characters / Total Characters Typed) × 100%
 ```
+
 Shows what percentage of your typing was correct.
 
 ### Errors
+
 ```
 Errors = Total Characters Typed - Correct Characters
 ```
+
 The total number of mistakes made during the test.
 
 ## 💾 File Structure
 
 The entire project is **ONE HTML file** with:
+
 - **CSS Styling**: All visual design and animations
 - **HTML Structure**: The layout and UI elements
 - **JavaScript Logic**: All functionality and interactivity
@@ -78,28 +91,34 @@ The entire project is **ONE HTML file** with:
 ## 🎨 Customization
 
 ### Add More Sentences
+
 Edit the `sentences` array in the JavaScript section:
+
 ```javascript
 const sentences = [
-    "Your sentence here.",
-    "Another sentence.",
-    // Add as many as you want!
+  "Your sentence here.",
+  "Another sentence.",
+  // Add as many as you want!
 ];
 ```
 
 ### Change Colors
+
 Edit the CSS variables at the top:
+
 ```css
 :root {
-    --correct: #4ade80;        /* Green for correct */
-    --wrong: #ef4444;          /* Red for wrong */
-    --accent: #3b82f6;         /* Blue for cursor/accent */
-    /* etc... */
+  --correct: #4ade80; /* Green for correct */
+  --wrong: #ef4444; /* Red for wrong */
+  --accent: #3b82f6; /* Blue for cursor/accent */
+  /* etc... */
 }
 ```
 
 ### Adjust Timer Update Speed
+
 In the `initTest()` function, change the interval:
+
 ```javascript
 timerInterval = setInterval(() => { ... }, 100); // 100ms updates
 ```
@@ -107,11 +126,13 @@ timerInterval = setInterval(() => { ... }, 100); // 100ms updates
 ## 🌓 Theme Colors
 
 ### Light Mode (Default)
+
 - Background: White
 - Text: Dark gray/black
 - Borders: Light gray
 
 ### Dark Mode
+
 - Background: Almost black (#0f0f0f)
 - Text: White
 - Borders: Dark gray
@@ -122,6 +143,7 @@ Both themes have subtle gradient backgrounds for atmosphere.
 ## 📱 Browser Support
 
 Works on:
+
 - ✅ Chrome/Chromium
 - ✅ Firefox
 - ✅ Safari
@@ -131,11 +153,13 @@ Works on:
 ## 🔧 Technical Details
 
 ### Technologies Used
+
 - **HTML5**: Semantic markup
 - **CSS3**: Flexbox, gradients, animations, CSS variables for theming
 - **Vanilla JavaScript**: No frameworks or libraries needed
 
 ### Key Features
+
 - **localStorage**: Saves your theme preference
 - **Event Listeners**: Real-time input handling
 - **DOM Manipulation**: Dynamic text coloring and updates
@@ -143,6 +167,7 @@ Works on:
 - **Regex-free**: Simple string comparison for accuracy
 
 ### Performance
+
 - Lightweight single file
 - No external dependencies
 - Smooth 60fps animations
@@ -151,6 +176,7 @@ Works on:
 ## 📝 Example Sentences Included
 
 The typing test comes with 15 diverse, relaxing sentences perfect for practice:
+
 - "The quick brown fox jumps over the lazy dog."
 - "Music has the power to heal the human soul."
 - "Every sunset brings the promise of a new dawn."
@@ -176,6 +202,7 @@ The typing test comes with 15 diverse, relaxing sentences perfect for practice:
 ## 📈 Progress Tracking
 
 Keep track of your improvements:
+
 - Note your WPM each session
 - Track your accuracy percentage
 - Try to improve one metric per week
@@ -191,6 +218,7 @@ Keep track of your improvements:
 ## 🤝 Contributing
 
 To improve this project:
+
 1. Add more sentences for variety
 2. Create sentence packs (easy, medium, hard)
 3. Add time-limited challenges

@@ -1,47 +1,49 @@
-# TaskFlow:  Modern To-Do List Web Application
+# TaskFlow: Modern To-Do List Web Application
 
 ## Description
+
 TaskFlow is a modern, fully client-side task management web application built using HTML, CSS, and JavaScript. It provides a clean and interactive UI for managing daily tasks with features like filtering, themes, local storage, and PDF export.
 
 TaskFlow is a modern and responsive To-Do List web application designed to help users manage daily tasks efficiently with a clean and premium user interface. The project focuses on productivity, simplicity, and enhanced user experience through modern frontend design and interactive features.
 
 ## Features
 
-* Add, complete, and delete tasks
-* Dynamic animated progress bar
-* Save task snapshots as documents
-* Dedicated Documents section with previews
-* Dark/Light theme toggle
-* Responsive modern UI
-* Glassmorphism-inspired design
-* LocalStorage support for persistent data
-* Smooth animations and interactions
-- ➕ Add, edit, complete, and delete tasks
-- 🎯 Filter tasks by status and category
-- 🌈 5 beautiful UI themes:
+- Add, complete, and delete tasks
+- Dynamic animated progress bar
+- Save task snapshots as documents
+- Dedicated Documents section with previews
+- Dark/Light theme toggle
+- Responsive modern UI
+- Glassmorphism-inspired design
+- LocalStorage support for persistent data
+- Smooth animations and interactions
+
+* ➕ Add, edit, complete, and delete tasks
+* 🎯 Filter tasks by status and category
+* 🌈 5 beautiful UI themes:
   - Sunset
   - Ocean
   - Forest
   - Midnight
   - Aurora
-- 💾 Local storage support (data persists after refresh)
-- 📊 Live statistics (total, completed, pending tasks)
-- 📱 Fully responsive design (mobile + desktop)
-- ✨ Smooth animations and transitions
-- 🔔 Toast notifications for user actions
-- 📄 Export tasks as styled PDF using jsPDF
-- 📁 Document history for exported files
-- 🧩 Drag and Drop Kanban workflow:
+* 💾 Local storage support (data persists after refresh)
+* 📊 Live statistics (total, completed, pending tasks)
+* 📱 Fully responsive design (mobile + desktop)
+* ✨ Smooth animations and transitions
+* 🔔 Toast notifications for user actions
+* 📄 Export tasks as styled PDF using jsPDF
+* 📁 Document history for exported files
+* 🧩 Drag and Drop Kanban workflow:
   - Pending
   - In Progress
   - Completed
 
 ## Technologies Used
 
-* HTML5
-* CSS3
-* JavaScript ES6
-* LocalStorage API
+- HTML5
+- CSS3
+- JavaScript ES6
+- LocalStorage API
 
 ## Installation/Setup
 
@@ -59,29 +61,33 @@ cd TaskFlow
 
 3. Run the project:
 
-* Open `index.html` in your browser
+- Open `index.html` in your browser
 
 ## Usage
 
-* Add tasks using the input field
-* Mark tasks as completed
-* Delete unwanted tasks
-* Track completion progress using the progress bar
-* Save task snapshots in the Documents section
-* Toggle between Dark and Light themes
+- Add tasks using the input field
+- Mark tasks as completed
+- Delete unwanted tasks
+- Track completion progress using the progress bar
+- Save task snapshots in the Documents section
+- Toggle between Dark and Light themes
 
 ## Screenshots
 
 ### Home Page UI
+
 ![Home Page](homepage.png)
 
 ### Documents Section
+
 ![Documents Section](documents.png)
 
 ### Progress Tracking
+
 ![Progress Tracking](progressbar.png)
 
 ### Dark/Light Theme Interface
+
 ![Theme Interface](lightmode.png)
 
 ## Contributing
@@ -103,6 +109,7 @@ MIT License
 ## Author
 
 Indrayani Verulkar
+
 ## Technologies Used
 
 - HTML5
@@ -121,7 +128,7 @@ Clone the repository:
 git clone https://github.com/dhairyagothi/100_days_100_web_project.git
 ```
 
- Navigate to project folder:
+Navigate to project folder:
 
 ```bash
 cd 100_days_100_web_project
@@ -151,7 +158,7 @@ TO_DO_LIST/
 └── README.md
 ```
 
-* Open `index.html` in your browser
+- Open `index.html` in your browser
 
 ## Usage
 
@@ -164,6 +171,7 @@ TO_DO_LIST/
 ## Screenshots
 
 ### Home Page UI
+
 ![Home Page](homepage.png)
 
 Fork the repository

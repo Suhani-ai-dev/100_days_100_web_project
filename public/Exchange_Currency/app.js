@@ -1,4 +1,5 @@
-const BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
+const BASE_URL =
+  "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
 const FALLBACK_URL = "https://latest.currency-api.pages.dev/v1/currencies";
 
 const dropdowns = document.querySelectorAll(".dropdown select");
@@ -100,7 +101,8 @@ const updateExchangeRate = async (forceDefault = false) => {
     console.warn(error);
     try {
       response = await fetch(FALLBACK_API_URL);
-      if (!response.ok) throw new Error("Failed to fetch exchange rate from fallback API.");
+      if (!response.ok)
+        throw new Error("Failed to fetch exchange rate from fallback API.");
     } catch (error) {
       msg.innerText = "Error: Unable to fetch exchange rate.";
       convertedAmountField.value = "";
@@ -167,7 +169,11 @@ resetBtn.addEventListener("click", () => {
   clearError();
 
   // Check if already reset/cleared
-  if (amtInput.value === "" && fromCurr.value === "USD" && toCurr.value === "INR") {
+  if (
+    amtInput.value === "" &&
+    fromCurr.value === "USD" &&
+    toCurr.value === "INR"
+  ) {
     // Show already reset warning in red with a shake effect
     msg.innerText = "Values are already reset";
     msg.style.color = "#d32f2f";
@@ -193,7 +199,7 @@ resetBtn.addEventListener("click", () => {
 
   amtInput.value = "";
   convertedAmountField.value = "";
-  
+
   // Show temporary successful reset feedback in green
   msg.innerText = "Values reset successfully";
   msg.style.color = "#2e7d32";

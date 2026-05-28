@@ -1,21 +1,19 @@
-import HPnav from './HPnav'
-import HPhero from './HPhero'
+import HPnav from "./HPnav";
+import HPhero from "./HPhero";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { endpoints} from '../utils/api';
-
+import { endpoints } from "../utils/api";
 
 export default function HomePage() {
-
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
 
   useEffect(() => {
     const authCheck = async () => {
       try {
-        const response = await fetch(endpoints.ME, {  // endpoints.ME ka API env and api.js main store hai
-          credentials: "include"
+        const response = await fetch(endpoints.ME, {
+          // endpoints.ME ka API env and api.js main store hai
+          credentials: "include",
         });
 
         if (!response.ok) {
@@ -26,7 +24,6 @@ export default function HomePage() {
         const data = await response.json();
         setUser(data);
         setIsLoggedIn(true);
-
       } catch (err) {
         setIsLoggedIn(false);
       }
@@ -42,7 +39,7 @@ export default function HomePage() {
 
         <meta
           name="description"
-  content="URL shortener, link shortener app, free URL shortener, secure link shortener, password protected links, link expiry tool, QR code generator online, custom short links, link management tool, URL analytics, modern URL shortener, App Nests, app ecosystem platform, smart link sharing, shorten links online" 
+          content="URL shortener, link shortener app, free URL shortener, secure link shortener, password protected links, link expiry tool, QR code generator online, custom short links, link management tool, URL analytics, modern URL shortener, App Nests, app ecosystem platform, smart link sharing, shorten links online"
         />
 
         <meta
@@ -61,8 +58,7 @@ export default function HomePage() {
         <meta property="og:url" content="https://chandankoranga.in" />
       </Helmet>
 
-       {/* UI module Below */}
-
+      {/* UI module Below */}
 
       <HPnav status={isLoggedIn} />
       <HPhero User_name={user} status={isLoggedIn} />

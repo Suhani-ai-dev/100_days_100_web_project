@@ -26,7 +26,8 @@
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-modal:
+    0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
 }
 
 body.dark-mode {
@@ -59,7 +60,15 @@ body.dark-mode {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -67,7 +76,9 @@ body.dark-mode {
 body {
   background: var(--bg-color);
   color: var(--text-main);
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
   min-height: 100vh;
   overflow-x: hidden;
   font-size: 14px;
@@ -163,9 +174,15 @@ body {
   display: inline-block;
 }
 
-.category-dot.health   { background: var(--danger-color); }
-.category-dot.work     { background: var(--accent-primary); }
-.category-dot.personal { background: #f59e0b; }
+.category-dot.health {
+  background: var(--danger-color);
+}
+.category-dot.work {
+  background: var(--accent-primary);
+}
+.category-dot.personal {
+  background: #f59e0b;
+}
 
 .nav-item {
   display: flex;
@@ -543,9 +560,15 @@ body.dark-mode .tooltip-text {
   background: var(--card-border);
 }
 
-.heat-square.level-1 { background: rgba(79, 70, 229, 0.3); }
-.heat-square.level-2 { background: rgba(79, 70, 229, 0.6); }
-.heat-square.level-3 { background: rgba(79, 70, 229, 1); }
+.heat-square.level-1 {
+  background: rgba(79, 70, 229, 0.3);
+}
+.heat-square.level-2 {
+  background: rgba(79, 70, 229, 0.6);
+}
+.heat-square.level-3 {
+  background: rgba(79, 70, 229, 1);
+}
 
 /* DETAILS */
 .details-card {
@@ -769,11 +792,19 @@ body.dark-mode .card-section {
 }
 
 /* ACHIEVEMENT BADGES (extended) */
-#badge-3  { border-left: 4px solid #cd7f32; }
-#badge-7  { border-left: 4px solid #adb5bd; }
-#badge-30 { border-left: 4px solid #ffd700; }
+#badge-3 {
+  border-left: 4px solid #cd7f32;
+}
+#badge-7 {
+  border-left: 4px solid #adb5bd;
+}
+#badge-30 {
+  border-left: 4px solid #ffd700;
+}
 
-.achievement-badge.locked   { opacity: 0.55; }
+.achievement-badge.locked {
+  opacity: 0.55;
+}
 
 .achievement-badge.unlocked {
   opacity: 1;
@@ -869,8 +900,12 @@ body.dark-mode .modal-card {
 }
 
 @keyframes bounce {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-10px); }
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
 }
 
 #milestone-btn {

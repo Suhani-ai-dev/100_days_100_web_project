@@ -1,44 +1,43 @@
 const { nanoid } = require("nanoid");
-const bcrypt = require('bcrypt');
-const LinksData = require('../models/LinksData');
-const QRCode = require('qrcode');
-const { AppError } = require('../middlewares/errorHandler');
+const bcrypt = require("bcrypt");
+const LinksData = require("../models/LinksData");
+const QRCode = require("qrcode");
+const { AppError } = require("../middlewares/errorHandler");
 
 exports.Response_POST_API = async (req, res) => {
+  const { originalURL, Password, expiryDate } = req.body;
 
-    const { originalURL, Password, expiryDate } = req.body;
+  const BASE_URL = process.env.SERVER_URL || "http://localhost:5000";
 
-    const BASE_URL = process.env.SERVER_URL || "http://localhost:5000";
+  if (!originalURL) {
+    throw new AppError("Enter URL first", 400);
+  }
 
-    if (!originalURL) {
-        throw new AppError("Enter URL first", 400);
-    }
+  let Shortcode;
+  let RegisteredURL = true;
 
-    let Shortcode;
-    let RegisteredURL = true;
+  while (RegisteredURL) {
+    Shortcode = nanoid(7);
+    RegisteredURL = await LinksData.findOne({ randomId: Shortcode });
+  }
 
-    while (RegisteredURL) {
-        Shortcode = nanoid(7);
-        RegisteredURL = await LinksData.findOne({ randomId: Shortcode });
-    }
+  const hashedPassword = Password ? await bcrypt.hash(Password, 10) : null;
 
-    const hashedPassword = Password ? await bcrypt.hash(Password, 10) : null;
+  await LinksData.create({
+    usedBy: req.user._id,
+    originalLink: originalURL,
+    randomId: Shortcode,
+    password: hashedPassword,
+    ExpiryDate: expiryDate ? new Date(expiryDate) : null,
+    status: "ACTIVE",
+  });
 
-    await LinksData.create({
-        usedBy: req.user._id,
-        originalLink: originalURL,
-        randomId: Shortcode,
-        password: hashedPassword,
-        ExpiryDate: expiryDate ? new Date(expiryDate) : null,
-        status: "ACTIVE"
-    });
+  const shortUrl = `${BASE_URL}/${Shortcode}`;
 
-    const shortUrl = `${BASE_URL}/${Shortcode}`;
+  const qrcode = await QRCode.toDataURL(shortUrl);
 
-    const qrcode = await QRCode.toDataURL(shortUrl);
-
-    res.status(201).json({
-        ShortURL: shortUrl,
-        qrcode: qrcode
-    });
+  res.status(201).json({
+    ShortURL: shortUrl,
+    qrcode: qrcode,
+  });
 };

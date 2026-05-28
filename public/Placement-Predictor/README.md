@@ -20,6 +20,7 @@ A smart web app that predicts placement probability and expected salary package 
 ## How It Works
 
 The app calculates a score using:
+
 - CGPA
 - DSA skills
 - Projects
@@ -28,6 +29,7 @@ The app calculates a score using:
 - Tech stack
 
 Based on the score, it predicts:
+
 - Placement probability
 - Expected package
 - Improvement suggestions

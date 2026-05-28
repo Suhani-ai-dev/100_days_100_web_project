@@ -17,16 +17,17 @@ type Props = {
   loading?: boolean;
 };
 
-export default function HintsPanel({ hintData, revealLevel, word, loading = false }: Props) {
+export default function HintsPanel({
+  hintData,
+  revealLevel,
+  word,
+  loading = false,
+}: Props) {
   return (
     <aside className="hints-panel" aria-live="polite" aria-atomic="true">
       <h3>Hints</h3>
 
-      {loading && (
-        <div className="hint-row">
-          Loading hint…
-        </div>
-      )}
+      {loading && <div className="hint-row">Loading hint…</div>}
 
       {!loading && revealLevel === 0 && (
         <div className="hint-row">
@@ -37,7 +38,9 @@ export default function HintsPanel({ hintData, revealLevel, word, loading = fals
       {!loading && revealLevel >= 1 && word && (
         <div className="hint-row">
           <strong>First letter</strong>:{" "}
-          <span style={{ marginLeft: 8, fontWeight: 700 }}>{word[0].toUpperCase()}</span>
+          <span style={{ marginLeft: 8, fontWeight: 700 }}>
+            {word[0].toUpperCase()}
+          </span>
         </div>
       )}
 
@@ -47,7 +50,9 @@ export default function HintsPanel({ hintData, revealLevel, word, loading = fals
             <div className="hint-row" style={{ marginTop: 10 }}>
               <strong>Definition</strong>: {hintData.definition}
               {hintData.partOfSpeech && (
-                <span style={{ marginLeft: 8, color: "var(--muted)" }}>— {hintData.partOfSpeech}</span>
+                <span style={{ marginLeft: 8, color: "var(--muted)" }}>
+                  — {hintData.partOfSpeech}
+                </span>
               )}
             </div>
           ) : (
@@ -58,7 +63,8 @@ export default function HintsPanel({ hintData, revealLevel, word, loading = fals
 
           {hintData?.synonyms && hintData.synonyms.length > 0 && (
             <div className="hint-row" style={{ marginTop: 8 }}>
-              <strong>Synonyms</strong>: {(hintData.synonyms as string[]).slice(0, 6).join(", ")}
+              <strong>Synonyms</strong>:{" "}
+              {(hintData.synonyms as string[]).slice(0, 6).join(", ")}
             </div>
           )}
 

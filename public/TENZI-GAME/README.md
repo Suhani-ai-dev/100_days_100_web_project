@@ -29,6 +29,7 @@ A simple, fast, and fun dice game built with React. Play against the clock, try 
 - **`index.html`**: The main page shell that holds the game canvas.
 
 ## 🚀 How to Run It Locally
+
 ```
 1. Go into the project folder:
     cd TENZIES-GAME

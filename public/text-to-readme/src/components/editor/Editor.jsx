@@ -40,7 +40,6 @@ function Editor() {
           onChange={handleTemplateChange}
           aria-label="Select README template"
         >
-          
           <option value="react">React Project</option>
           <option value="node">Node.js Project</option>
           <option value="portfolio">Portfolio Website</option>

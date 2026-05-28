@@ -10,7 +10,6 @@ accordion_containers.forEach((accordion_container) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const states = [
     "Andhra Pradesh",
     "Assam",
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Tamil Nadu",
     "Uttar Pradesh",
     "Uttarakhand",
-    "West Bengal"
+    "West Bengal",
   ];
 
   const locationInput = document.querySelector(".location-input");
@@ -34,11 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".dropdown-toggle");
 
   function renderDropdown(filteredStates) {
-
     dropdown.innerHTML = "";
 
     filteredStates.forEach((state) => {
-
       const item = document.createElement("div");
 
       item.classList.add("dropdown-item");
@@ -46,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
       item.textContent = state;
 
       item.addEventListener("click", () => {
-
         locationInput.value = state;
 
         dropdown.classList.add("hidden");
@@ -57,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   toggleBtn.addEventListener("click", (e) => {
-
     e.stopPropagation();
 
     renderDropdown(states);
@@ -66,11 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   locationInput.addEventListener("input", () => {
-
     const value = locationInput.value.toLowerCase();
 
     const filteredStates = states.filter((state) =>
-      state.toLowerCase().includes(value)
+      state.toLowerCase().includes(value),
     );
 
     renderDropdown(filteredStates);
@@ -79,11 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", (e) => {
-
     if (!e.target.closest(".location")) {
-
       dropdown.classList.add("hidden");
     }
   });
-
 });

@@ -3,7 +3,7 @@ const express = require("express");
 const {
   getHealthStatus,
   getServerInfo,
-  getUsers
+  getUsers,
 } = require("../controllers/apiController");
 
 const router = express.Router();

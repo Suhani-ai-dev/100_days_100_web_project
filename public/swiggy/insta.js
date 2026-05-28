@@ -1,10 +1,7 @@
-
 document.body.style.margin = "0";
-
 
 const topMenu = document.createElement("div");
 topMenu.classList.add("top_menu");
-
 
 const loginCircle = document.createElement("div");
 loginCircle.classList.add("login_circle");
@@ -20,13 +17,11 @@ const searchInput = document.createElement("input");
 searchInput.setAttribute("type", "search");
 searchInput.setAttribute("placeholder", "Search for 'diapers'");
 
-
 topMenu.appendChild(loginCircle);
 topMenu.appendChild(searchIcon);
 topMenu.appendChild(searchInput);
 
 document.body.appendChild(topMenu);
-
 
 const shopDiv = document.createElement("div");
 shopDiv.classList.add("shop");
@@ -36,7 +31,6 @@ shopHeading.textContent = "SHOP BY CATEGORY";
 shopDiv.appendChild(shopHeading);
 
 document.body.appendChild(shopDiv);
-
 
 const lineDiv = document.createElement("div");
 lineDiv.classList.add("line");
@@ -123,7 +117,15 @@ const footerColumns = [
   },
   {
     title: "We deliver to",
-    items: ["Bangalore", "Delhi", "Mumbai", "Kolkata", "Jaipur", "Pune", "Kochi"],
+    items: [
+      "Bangalore",
+      "Delhi",
+      "Mumbai",
+      "Kolkata",
+      "Jaipur",
+      "Pune",
+      "Kochi",
+    ],
   },
   {
     title: "Company",
@@ -153,11 +155,15 @@ footer.appendChild(footerContainer);
 
 document.body.appendChild(footer);
 
-
 const iconsDiv = document.createElement("div");
 iconsDiv.classList.add("icons");
 
-const icons = ["bxl-facebook", "fa-shopping-cart", "bxl-twitter", "bxl-linkedin"];
+const icons = [
+  "bxl-facebook",
+  "fa-shopping-cart",
+  "bxl-twitter",
+  "bxl-linkedin",
+];
 icons.forEach((icon) => {
   const i = document.createElement("i");
   i.className = `bx ${icon}`;
@@ -166,6 +172,5 @@ icons.forEach((icon) => {
 });
 
 footer.appendChild(iconsDiv);
-
 
 document.body.appendChild(footer);

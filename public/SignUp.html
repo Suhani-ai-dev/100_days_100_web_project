@@ -89,7 +89,6 @@
           <p class="already-signed-up">
             Already signed up? <a href="Login.html">Login</a>
           </p>
-          
         </div>
       </div>
     </section>
@@ -101,13 +100,13 @@
         const toggleIcon = document.querySelector(".toggle-password");
 
         if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            toggleIcon.classList.add("active");
-            // toggleIcon.textContent = "..";
+          passwordInput.type = "text";
+          toggleIcon.classList.add("active");
+          // toggleIcon.textContent = "..";
         } else {
-            passwordInput.type = "password";
-            toggleIcon.classList.remove("active");
-            // toggleIcon.textContent = "👁";
+          passwordInput.type = "password";
+          toggleIcon.classList.remove("active");
+          // toggleIcon.textContent = "👁";
         }
       }
 
@@ -128,7 +127,6 @@
             alert("Username already exists.");
             return;
           }
-
 
           // Strong password validation
           const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;

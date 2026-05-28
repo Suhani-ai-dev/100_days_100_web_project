@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import './navbar.css';
+import React, { useState } from "react";
+import "./navbar.css";
 
 function Navbar({ onTextSelect }) {
   const [openCategory, setOpenCategory] = useState(null);
 
   const predefinedTexts = {
-    headings: ['# Heading 1', '## Heading 2', '### Heading 3'],
-    lists: ['- Unordered List', '1. Ordered List'],
-    format: ['**Bold Text**', '*Italic Text*'],
-    quotingText: ['> Quoted Text'],
-    links: ['[Link](https://example.com)'],
-    sectionLinks: ['[Section Link](#section)'],
-    relativeLinks: ['[Relative Link](./page.html)'],
-    customAnchors: ['[Custom Anchor](#anchor)'],
-    images: ['![Alt Text](https://via.placeholder.com/150)'],
-    taskLists: ['- [ ] Task 1'],
+    headings: ["# Heading 1", "## Heading 2", "### Heading 3"],
+    lists: ["- Unordered List", "1. Ordered List"],
+    format: ["**Bold Text**", "*Italic Text*"],
+    quotingText: ["> Quoted Text"],
+    links: ["[Link](https://example.com)"],
+    sectionLinks: ["[Section Link](#section)"],
+    relativeLinks: ["[Relative Link](./page.html)"],
+    customAnchors: ["[Custom Anchor](#anchor)"],
+    images: ["![Alt Text](https://via.placeholder.com/150)"],
+    taskLists: ["- [ ] Task 1"],
   };
 
   const toggleDropdown = (category) => {
@@ -26,13 +26,20 @@ function Navbar({ onTextSelect }) {
     <div className="navbar">
       {/* Heading Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('headings')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("headings")}
+        >
           Headings
         </button>
-        {openCategory === 'headings' && (
+        {openCategory === "headings" && (
           <div className="dropdown">
             {predefinedTexts.headings.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -42,13 +49,20 @@ function Navbar({ onTextSelect }) {
 
       {/* List Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('lists')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("lists")}
+        >
           Lists
         </button>
-        {openCategory === 'lists' && (
+        {openCategory === "lists" && (
           <div className="dropdown">
             {predefinedTexts.lists.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -58,13 +72,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Format Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('format')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("format")}
+        >
           Styling
         </button>
-        {openCategory === 'format' && (
+        {openCategory === "format" && (
           <div className="dropdown">
             {predefinedTexts.format.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -74,13 +95,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Quoting Text Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('quotingText')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("quotingText")}
+        >
           Quoting Text
         </button>
-        {openCategory === 'quotingText' && (
+        {openCategory === "quotingText" && (
           <div className="dropdown">
             {predefinedTexts.quotingText.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -90,13 +118,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Links Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('links')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("links")}
+        >
           Links
         </button>
-        {openCategory === 'links' && (
+        {openCategory === "links" && (
           <div className="dropdown">
             {predefinedTexts.links.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -106,13 +141,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Section Links Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('sectionLinks')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("sectionLinks")}
+        >
           Section Links
         </button>
-        {openCategory === 'sectionLinks' && (
+        {openCategory === "sectionLinks" && (
           <div className="dropdown">
             {predefinedTexts.sectionLinks.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -122,13 +164,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Relative Links Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('relativeLinks')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("relativeLinks")}
+        >
           Relative Links
         </button>
-        {openCategory === 'relativeLinks' && (
+        {openCategory === "relativeLinks" && (
           <div className="dropdown">
             {predefinedTexts.relativeLinks.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -138,13 +187,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Custom Anchors Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('customAnchors')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("customAnchors")}
+        >
           Custom Anchors
         </button>
-        {openCategory === 'customAnchors' && (
+        {openCategory === "customAnchors" && (
           <div className="dropdown">
             {predefinedTexts.customAnchors.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -154,13 +210,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Images Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('images')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("images")}
+        >
           Images
         </button>
-        {openCategory === 'images' && (
+        {openCategory === "images" && (
           <div className="dropdown">
             {predefinedTexts.images.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}
@@ -170,13 +233,20 @@ function Navbar({ onTextSelect }) {
 
       {/* Task Lists Category */}
       <div className="navbar-category">
-        <button className="navbar-button" onClick={() => toggleDropdown('taskLists')}>
+        <button
+          className="navbar-button"
+          onClick={() => toggleDropdown("taskLists")}
+        >
           Task Lists
         </button>
-        {openCategory === 'taskLists' && (
+        {openCategory === "taskLists" && (
           <div className="dropdown">
             {predefinedTexts.taskLists.map((text, index) => (
-              <button key={index} className="dropdown-item" onClick={() => onTextSelect(text)}>
+              <button
+                key={index}
+                className="dropdown-item"
+                onClick={() => onTextSelect(text)}
+              >
                 {text}
               </button>
             ))}

@@ -2,7 +2,6 @@ Swiper API Slider 🖼️
 
 A responsive and modern image slider built using HTML, CSS, JavaScript, and the Swiper.js library. This project demonstrates how to create smooth, touch-enabled sliders with navigation controls, autoplay functionality, and responsive layouts for modern web applications.
 
-
 📌 Features
 
 Responsive image slider
@@ -15,16 +14,14 @@ Autoplay functionality
 Mobile-friendly design
 Easy customization
 
-
 🛠️ Tech Stack
 
-| Technology | Usage |
-|------------|-------|
-| HTML5      | Structure |
-| CSS3       | Styling |
+| Technology | Usage                |
+| ---------- | -------------------- |
+| HTML5      | Structure            |
+| CSS3       | Styling              |
 | JavaScript | Slider Functionality |
-| Swiper.js  | Slider Library |
-
+| Swiper.js  | Slider Library       |
 
 📂 Project Structure
 
@@ -41,7 +38,6 @@ swiper-api-slider/
 ├── script.js
 └── README.md
 ```
-
 
 ⚙️ Installation & Setup
 
@@ -62,6 +58,7 @@ VS Code Live Server Extension
 Add the Swiper CDN inside your HTML file.
 
 CSS CDN
+
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -69,9 +66,9 @@ CSS CDN
 JavaScript CDN
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-
 🧠 HTML Structure
 index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,29 +77,24 @@ index.html
 
   <title>Swiper API Slider</title>
 
- 
 </head>
 
-
-  
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 
 </body>
 </html>
 
-
 🎨 CSS Styling
 
 style.css
 
 body {
-  margin: 0;
-  padding: 0;
-  background: #111827;
-  font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background: #111827;
+font-family: Arial, sans-serif;
 }
-
 
 ⚡ JavaScript Configuration
 
@@ -110,16 +102,15 @@ script.js
 
 const swiper = new Swiper(".mySwiper", {});
 
-
 🌟 Features Demonstrated
 
-| Feature | Description |
-|----------|-------------|
-| Autoplay | Automatically changes slides |
-| Loop Mode | Infinite slider loop |
-| Pagination | Clickable slide indicators |
-| Navigation Buttons | Previous & Next controls |
-| Touch Support | Swipe gestures for mobile devices |
+| Feature            | Description                       |
+| ------------------ | --------------------------------- |
+| Autoplay           | Automatically changes slides      |
+| Loop Mode          | Infinite slider loop              |
+| Pagination         | Clickable slide indicators        |
+| Navigation Buttons | Previous & Next controls          |
+| Touch Support      | Swipe gestures for mobile devices |
 
 📸 Preview
 
@@ -138,7 +129,6 @@ You can deploy using:
 Netlify
 Vercel
 GitHub Pages
-
 
 🚀 Future Improvements
 
@@ -163,7 +153,6 @@ git commit -m "Add new feature"
 Push to GitHub
 git push origin feature/new-feature
 Open a Pull Request
-
 
 ⭐ Support
 

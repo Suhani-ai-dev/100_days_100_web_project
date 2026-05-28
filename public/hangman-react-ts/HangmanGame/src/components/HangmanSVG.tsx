@@ -7,7 +7,12 @@ type Props = {
 export default function HangmanSVG({ wrongCount }: Props) {
   // Each part has a CSS class that transitions opacity/transform
   return (
-    <svg viewBox="0 0 200 240" className="hangman-svg" role="img" aria-label="Hangman drawing">
+    <svg
+      viewBox="0 0 200 240"
+      className="hangman-svg"
+      role="img"
+      aria-label="Hangman drawing"
+    >
       {/* Gallows */}
       <g className="gallows">
         <rect x="10" y="220" width="180" height="10" fill="#333" />
@@ -18,32 +23,79 @@ export default function HangmanSVG({ wrongCount }: Props) {
 
       {/* Head */}
       <g className={`part head ${wrongCount > 0 ? "visible" : ""}`}>
-        <circle cx="131" cy="70" r="16" stroke="#222" strokeWidth="3" fill="none" />
+        <circle
+          cx="131"
+          cy="70"
+          r="16"
+          stroke="#222"
+          strokeWidth="3"
+          fill="none"
+        />
       </g>
 
       {/* Body */}
       <g className={`part body ${wrongCount > 1 ? "visible" : ""}`}>
-        <line x1="131" y1="86" x2="131" y2="140" stroke="#222" strokeWidth="3" strokeLinecap="round" />
+        <line
+          x1="131"
+          y1="86"
+          x2="131"
+          y2="140"
+          stroke="#222"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
       </g>
 
       {/* Left Arm */}
       <g className={`part left-arm ${wrongCount > 2 ? "visible" : ""}`}>
-        <line x1="131" y1="100" x2="110" y2="120" stroke="#222" strokeWidth="3" strokeLinecap="round" />
+        <line
+          x1="131"
+          y1="100"
+          x2="110"
+          y2="120"
+          stroke="#222"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
       </g>
 
       {/* Right Arm */}
       <g className={`part right-arm ${wrongCount > 3 ? "visible" : ""}`}>
-        <line x1="131" y1="100" x2="152" y2="120" stroke="#222" strokeWidth="3" strokeLinecap="round" />
+        <line
+          x1="131"
+          y1="100"
+          x2="152"
+          y2="120"
+          stroke="#222"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
       </g>
 
       {/* Left Leg */}
       <g className={`part left-leg ${wrongCount > 4 ? "visible" : ""}`}>
-        <line x1="131" y1="140" x2="115" y2="180" stroke="#222" strokeWidth="3" strokeLinecap="round" />
+        <line
+          x1="131"
+          y1="140"
+          x2="115"
+          y2="180"
+          stroke="#222"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
       </g>
 
       {/* Right Leg */}
       <g className={`part right-leg ${wrongCount > 5 ? "visible" : ""}`}>
-        <line x1="131" y1="140" x2="147" y2="180" stroke="#222" strokeWidth="3" strokeLinecap="round" />
+        <line
+          x1="131"
+          y1="140"
+          x2="147"
+          y2="180"
+          stroke="#222"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
       </g>
     </svg>
   );

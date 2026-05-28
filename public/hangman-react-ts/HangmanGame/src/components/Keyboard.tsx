@@ -9,8 +9,12 @@ const KEYS = "abcdefghijklmnopqrstuvwxyz".split("");
 
 export default function Keyboard({ onGuess, disabledLetters }: Props) {
   return (
-    <div className="keyboard" role="application" aria-label="On screen keyboard">
-      {KEYS.map(k => (
+    <div
+      className="keyboard"
+      role="application"
+      aria-label="On screen keyboard"
+    >
+      {KEYS.map((k) => (
         <button
           key={k}
           className="key"

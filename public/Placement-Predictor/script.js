@@ -1,21 +1,17 @@
 let placementChart;
 let skillsChart;
-const progressCircle =
-  document.getElementById("progressCircle");
+const progressCircle = document.getElementById("progressCircle");
 
 const radius = 75;
 
 const circumference = 2 * Math.PI * radius;
 
-progressCircle.style.strokeDasharray =
-  circumference;
+progressCircle.style.strokeDasharray = circumference;
 
-progressCircle.style.strokeDashoffset =
-  circumference;
+progressCircle.style.strokeDashoffset = circumference;
 const predictBtn = document.getElementById("predictBtn");
 
 predictBtn.addEventListener("click", () => {
-
   const cgpa = parseFloat(document.getElementById("cgpa").value);
   const dsa = parseInt(document.getElementById("dsa").value);
   const projects = parseInt(document.getElementById("projects").value);
@@ -69,185 +65,170 @@ predictBtn.addEventListener("click", () => {
   document.getElementById("placementChance").textContent = `${score}%`;
   const circle = document.getElementById("progressCircle");
 
-const meterScore = document.getElementById("meterScore");
+  const meterScore = document.getElementById("meterScore");
 
-const radius = 75;
+  const radius = 75;
 
-const circumference = 2 * Math.PI * radius;
+  const circumference = 2 * Math.PI * radius;
 
-const offset =
-  circumference - (score / 100) * circumference;
+  const offset = circumference - (score / 100) * circumference;
 
-circle.style.strokeDashoffset = offset;
+  circle.style.strokeDashoffset = offset;
 
-meterScore.textContent = `${score}%`;
-if (score >= 80) {
+  meterScore.textContent = `${score}%`;
+  if (score >= 80) {
+    circle.style.stroke = "#22c55e";
 
-  circle.style.stroke = "#22c55e";
+    circle.style.filter = "drop-shadow(0 0 12px rgba(34,197,94,0.8))";
+  } else if (score >= 60) {
+    circle.style.stroke = "#eab308";
 
-  circle.style.filter =
-    "drop-shadow(0 0 12px rgba(34,197,94,0.8))";
+    circle.style.filter = "drop-shadow(0 0 12px rgba(234,179,8,0.8))";
+  } else {
+    circle.style.stroke = "#ef4444";
 
-} else if (score >= 60) {
-
-  circle.style.stroke = "#eab308";
-
-  circle.style.filter =
-    "drop-shadow(0 0 12px rgba(234,179,8,0.8))";
-
-} else {
-
-  circle.style.stroke = "#ef4444";
-
-  circle.style.filter =
-    "drop-shadow(0 0 12px rgba(239,68,68,0.8))";
-}
-  document.getElementById("expectedPackage").textContent = `₹${packageValue} LPA`;
+    circle.style.filter = "drop-shadow(0 0 12px rgba(239,68,68,0.8))";
+  }
+  document.getElementById("expectedPackage").textContent =
+    `₹${packageValue} LPA`;
   document.getElementById("suggestion").textContent = suggestion;
 
   document.getElementById("resultBox").style.display = "block";
   const textColor = document.body.classList.contains("dark-mode")
-  ? "#f8fafc"
-  : "#222";
+    ? "#f8fafc"
+    : "#222";
 
-const gridColor = document.body.classList.contains("dark-mode")
-  ? "#475569"
-  : "#ddd";
+  const gridColor = document.body.classList.contains("dark-mode")
+    ? "#475569"
+    : "#ddd";
   if (placementChart) placementChart.destroy();
 
   if (skillsChart) skillsChart.destroy();
   const placementCtx = document
-  .getElementById("placementChart")
-  .getContext("2d");
+    .getElementById("placementChart")
+    .getContext("2d");
 
-placementChart = new Chart(placementCtx, {
-  type: "bar",
+  placementChart = new Chart(placementCtx, {
+    type: "bar",
 
-  data: {
-    labels: ["Placement Chance", "Expected Package"],
+    data: {
+      labels: ["Placement Chance", "Expected Package"],
 
-    datasets: [{
-      label: "Prediction Metrics",
+      datasets: [
+        {
+          label: "Prediction Metrics",
 
-      data: [score, packageValue],
+          data: [score, packageValue],
 
-      borderRadius: 10
-    }]
-  },
-
-  options: {
-    responsive: true,
-
-    plugins: {
-      legend: {
-        labels: {
-          color: textColor
-        }
-      }
+          borderRadius: 10,
+        },
+      ],
     },
 
-    scales: {
-      y: {
-        ticks: {
-          color: textColor
-        },
+    options: {
+      responsive: true,
 
-        grid: {
-          color: gridColor
-        }
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
       },
 
-      x: {
-        ticks: {
-          color: textColor
+      scales: {
+        y: {
+          ticks: {
+            color: textColor,
+          },
+
+          grid: {
+            color: gridColor,
+          },
         },
 
-        grid: {
-          color: gridColor
-        }
-      }
-    }
-  }
-});
-const skillsCtx = document
-  .getElementById("skillsChart")
-  .getContext("2d");
+        x: {
+          ticks: {
+            color: textColor,
+          },
 
-skillsChart = new Chart(skillsCtx, {
-  type: "radar",
-
-  data: {
-    labels: [
-      "CGPA",
-      "DSA",
-      "Projects",
-      "Communication",
-      "Internship"
-    ],
-
-    datasets: [{
-      label: "Skill Analysis",
-
-      data: [
-        cgpa,
-
-        dsa,
-
-        projects > 10 ? 10 : projects,
-
-        communication === "Excellent"
-          ? 10
-          : communication === "Good"
-          ? 7
-          : communication === "Average"
-          ? 5
-          : 2,
-
-        internship === "Yes"
-          ? 10
-          : 3
-      ]
-    }]
-  },
-
-  options: {
-    responsive: true,
-
-    scales: {
-      r: {
-        suggestedMin: 0,
-        suggestedMax: 10,
-
-        ticks: {
-          color: textColor,
-          backdropColor: "transparent"
+          grid: {
+            color: gridColor,
+          },
         },
+      },
+    },
+  });
+  const skillsCtx = document.getElementById("skillsChart").getContext("2d");
 
-        pointLabels: {
-          color: textColor
+  skillsChart = new Chart(skillsCtx, {
+    type: "radar",
+
+    data: {
+      labels: ["CGPA", "DSA", "Projects", "Communication", "Internship"],
+
+      datasets: [
+        {
+          label: "Skill Analysis",
+
+          data: [
+            cgpa,
+
+            dsa,
+
+            projects > 10 ? 10 : projects,
+
+            communication === "Excellent"
+              ? 10
+              : communication === "Good"
+                ? 7
+                : communication === "Average"
+                  ? 5
+                  : 2,
+
+            internship === "Yes" ? 10 : 3,
+          ],
         },
-
-        grid: {
-          color: gridColor
-        },
-
-        angleLines: {
-          color: gridColor
-        }
-      }
+      ],
     },
 
-    plugins: {
-      legend: {
-        labels: {
-          color: textColor
-        }
-      }
-    }
-  }
-});
-});
+    options: {
+      responsive: true,
 
+      scales: {
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 10,
+
+          ticks: {
+            color: textColor,
+            backdropColor: "transparent",
+          },
+
+          pointLabels: {
+            color: textColor,
+          },
+
+          grid: {
+            color: gridColor,
+          },
+
+          angleLines: {
+            color: gridColor,
+          },
+        },
+      },
+
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+    },
+  });
+});
 
 const themeToggle = document.getElementById("themeToggle");
 
@@ -259,7 +240,6 @@ if (savedTheme === "dark") {
 }
 
 themeToggle.addEventListener("click", () => {
-
   document.body.classList.toggle("dark-mode");
 
   if (document.body.classList.contains("dark-mode")) {
@@ -269,10 +249,7 @@ themeToggle.addEventListener("click", () => {
     localStorage.setItem("placementTheme", "light");
     themeToggle.textContent = "🌙";
   }
-  if (
-  document.getElementById("resultBox").style.display === "block"
-) {
-  predictBtn.click();
-}
-
+  if (document.getElementById("resultBox").style.display === "block") {
+    predictBtn.click();
+  }
 });

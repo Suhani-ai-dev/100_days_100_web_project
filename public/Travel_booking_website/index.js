@@ -91,18 +91,18 @@ closeChat.addEventListener("click", () => {
 
 // SEND MESSAGE FUNCTION
 function formatResponse(text) {
+  return (
+    text
 
-  return text
+      // Bold text
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
 
-    // Bold text
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      // Bullet points
+      .replace(/^\* (.*$)/gim, "• $1")
 
-    // Bullet points
-    .replace(/^\* (.*$)/gim, "• $1")
-
-    // Line breaks
-    .replace(/\n/g, "<br>");
-
+      // Line breaks
+      .replace(/\n/g, "<br>")
+  );
 }
 async function sendMessage() {
   const message = userInput.value.trim();

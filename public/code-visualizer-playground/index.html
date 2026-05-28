@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,10 +28,18 @@
     <main class="layout">
       <section class="panel controls-panel" aria-label="Controls">
         <div class="controls-grid">
-          <button id="generate-btn" class="btn btn-secondary">Generate New Array</button>
+          <button id="generate-btn" class="btn btn-secondary">
+            Generate New Array
+          </button>
           <div class="speed-control">
             <label for="speed-slider">Speed</label>
-            <input id="speed-slider" type="range" min="1" max="100" value="50" />
+            <input
+              id="speed-slider"
+              type="range"
+              min="1"
+              max="100"
+              value="50"
+            />
             <span id="speed-label">275ms</span>
           </div>
           <div class="button-row">
@@ -53,13 +61,17 @@
 
       <aside class="panel explanation-panel" aria-live="polite">
         <h2>Explanation</h2>
-        <p id="explanation-text">Generate an array and press Play to start learning.</p>
+        <p id="explanation-text">
+          Generate an array and press Play to start learning.
+        </p>
       </aside>
 
       <section class="panel guide-panel" aria-label="Algorithm guide">
         <div class="guide-head">
           <h2 id="guide-title">Bubble Sort Guide</h2>
-          <p>Learn both theory and implementation for the selected algorithm.</p>
+          <p>
+            Learn both theory and implementation for the selected algorithm.
+          </p>
         </div>
         <div class="guide-grid">
           <article class="guide-card">

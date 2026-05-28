@@ -9,7 +9,7 @@ dateElement.innerText = today.toDateString();
 const themeToggle = document.getElementById("themeToggle");
 
 themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
+  document.body.classList.toggle("light-mode");
 });
 
 // TASK SYSTEM
@@ -21,61 +21,57 @@ const taskCount = document.getElementById("taskCount");
 let tasks = [];
 
 function updateTaskCount() {
-    taskCount.innerText = tasks.length;
+  taskCount.innerText = tasks.length;
 }
 
 function renderTasks() {
+  taskList.innerHTML = "";
 
-    taskList.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
 
-    tasks.forEach((task, index) => {
-
-        const li = document.createElement("li");
-
-        li.innerHTML = `
+    li.innerHTML = `
             ${task}
             <button class="deleteBtn" onclick="deleteTask(${index})">Delete</button>
         `;
 
-        taskList.appendChild(li);
-    });
+    taskList.appendChild(li);
+  });
 
-    updateTaskCount();
+  updateTaskCount();
 }
 
 addTaskBtn.addEventListener("click", () => {
+  const task = taskInput.value.trim();
 
-    const task = taskInput.value.trim();
+  if (task === "") {
+    alert("Enter a task");
+    return;
+  }
 
-    if(task === "") {
-        alert("Enter a task");
-        return;
-    }
+  tasks.push(task);
 
-    tasks.push(task);
+  taskInput.value = "";
 
-    taskInput.value = "";
+  renderTasks();
 
-    renderTasks();
-
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
 function deleteTask(index) {
+  tasks.splice(index, 1);
 
-    tasks.splice(index, 1);
+  renderTasks();
 
-    renderTasks();
-
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // LOAD TASKS
 const savedTasks = JSON.parse(localStorage.getItem("tasks"));
 
-if(savedTasks) {
-    tasks = savedTasks;
-    renderTasks();
+if (savedTasks) {
+  tasks = savedTasks;
+  renderTasks();
 }
 
 // NOTES
@@ -85,10 +81,9 @@ const saveNotesBtn = document.getElementById("saveNotesBtn");
 notesArea.value = localStorage.getItem("notes") || "";
 
 saveNotesBtn.addEventListener("click", () => {
+  localStorage.setItem("notes", notesArea.value);
 
-    localStorage.setItem("notes", notesArea.value);
-
-    alert("Notes saved successfully");
+  alert("Notes saved successfully");
 });
 
 // POMODORO TIMER
@@ -100,43 +95,36 @@ const minutesDisplay = document.getElementById("minutes");
 const secondsDisplay = document.getElementById("seconds");
 
 function updateTimerDisplay() {
-
-    minutesDisplay.innerText = String(minutes).padStart(2, '0');
-    secondsDisplay.innerText = String(seconds).padStart(2, '0');
+  minutesDisplay.innerText = String(minutes).padStart(2, "0");
+  secondsDisplay.innerText = String(seconds).padStart(2, "0");
 }
 
 function startTimer() {
+  timer = setInterval(() => {
+    if (seconds === 0) {
+      if (minutes === 0) {
+        clearInterval(timer);
+        alert("Focus Session Complete!");
+        return;
+      }
 
-    timer = setInterval(() => {
+      minutes--;
+      seconds = 59;
+    } else {
+      seconds--;
+    }
 
-        if(seconds === 0) {
-
-            if(minutes === 0) {
-                clearInterval(timer);
-                alert("Focus Session Complete!");
-                return;
-            }
-
-            minutes--;
-            seconds = 59;
-        }
-        else {
-            seconds--;
-        }
-
-        updateTimerDisplay();
-
-    }, 1000);
+    updateTimerDisplay();
+  }, 1000);
 }
 
 function resetTimer() {
+  clearInterval(timer);
 
-    clearInterval(timer);
+  minutes = 25;
+  seconds = 0;
 
-    minutes = 25;
-    seconds = 0;
-
-    updateTimerDisplay();
+  updateTimerDisplay();
 }
 
 updateTimerDisplay();

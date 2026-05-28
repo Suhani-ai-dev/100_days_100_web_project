@@ -39,9 +39,7 @@ function startGame() {
 
 // Timer
 function startTimer() {
-
   timer = setInterval(() => {
-
     if (paused) return;
 
     timeLeft--;
@@ -51,14 +49,11 @@ function startTimer() {
     if (timeLeft <= 0) {
       finishGame();
     }
-
   }, 1000);
-
 }
 
 // Shoot
 window.addEventListener("click", (e) => {
-
   if (!gameRunning || paused) return;
 
   shotsFired++;
@@ -68,12 +63,10 @@ window.addEventListener("click", (e) => {
   setTimeout(() => {
     checkHit(e.clientX, e.clientY);
   }, 350);
-
 });
 
 // Bullet Animation
 function createBullet(targetX, targetY) {
-
   const bullet = document.createElement("div");
 
   bullet.classList.add("bullet");
@@ -87,37 +80,27 @@ function createBullet(targetX, targetY) {
   gameArea.appendChild(bullet);
 
   const interval = setInterval(() => {
-
     x += (targetX - x) * 0.12;
     y += (targetY - y) * 0.12;
 
     bullet.style.left = x + "px";
     bullet.style.top = y + "px";
 
-    if (
-      Math.abs(x - targetX) < 5 &&
-      Math.abs(y - targetY) < 5
-    ) {
+    if (Math.abs(x - targetX) < 5 && Math.abs(y - targetY) < 5) {
       clearInterval(interval);
       bullet.remove();
     }
-
   }, 16);
-
 }
 
 // Hit Detection
 function checkHit(x, y) {
-
   const rect = target.getBoundingClientRect();
 
   const centerX = rect.left + rect.width / 2;
   const centerY = rect.top + rect.height / 2;
 
-  const distance = Math.sqrt(
-    (x - centerX) ** 2 +
-    (y - centerY) ** 2
-  );
+  const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
 
   let points = 0;
   let text = "MISS";
@@ -125,16 +108,13 @@ function checkHit(x, y) {
   if (distance < 20) {
     points = 100;
     text = "PERFECT +100";
-  }
-  else if (distance < 50) {
+  } else if (distance < 50) {
     points = 70;
     text = "+70";
-  }
-  else if (distance < 80) {
+  } else if (distance < 80) {
     points = 50;
     text = "+50";
-  }
-  else if (distance < 110) {
+  } else if (distance < 110) {
     points = 20;
     text = "+20";
   }
@@ -165,47 +145,34 @@ function checkHit(x, y) {
   setTimeout(() => {
     target.classList.remove("hitFlash");
   }, 300);
-
 }
 
 // Moving Target
 function moveTarget() {
-
   setInterval(() => {
-
     if (!gameRunning || paused) return;
 
-    let current =
-      parseInt(target.style.left) ||
-      window.innerWidth / 2;
+    let current = parseInt(target.style.left) || window.innerWidth / 2;
 
     current += moveDirection * 5;
 
-    if (
-      current > window.innerWidth - 200 ||
-      current < 120
-    ) {
+    if (current > window.innerWidth - 200 || current < 120) {
       moveDirection *= -1;
     }
 
     target.style.left = current + "px";
-
   }, 40);
-
 }
 
 // Pause
 pauseBtn.addEventListener("click", () => {
-
   paused = !paused;
 
   pauseBtn.innerText = paused ? "Resume" : "Pause";
-
 });
 
 // Finish Game
 function finishGame() {
-
   clearInterval(timer);
 
   gameRunning = false;
@@ -224,5 +191,4 @@ function finishGame() {
   `;
 
   document.body.appendChild(finishScreen);
-
 }

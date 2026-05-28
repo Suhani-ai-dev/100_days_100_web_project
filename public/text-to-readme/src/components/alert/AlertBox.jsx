@@ -1,5 +1,5 @@
-import React from 'react';
-import './alertbox.css';
+import React from "react";
+import "./alertbox.css";
 
 const AlertBox = ({ message, onClose }) => {
   return (
@@ -7,7 +7,9 @@ const AlertBox = ({ message, onClose }) => {
       <div className="alert-box">
         <h2 className="alert-title">Notice</h2>
         <p className="alert-message">{message}</p>
-        <button className="alert-close" onClick={onClose}>Close</button>
+        <button className="alert-close" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );

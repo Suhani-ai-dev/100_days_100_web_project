@@ -15,15 +15,11 @@ bgImg.src = "flappybirdbg.png";
 canvas.width = 1000;
 canvas.height = 600;
 
-
-
 // GAME VARIABLES
 
 let score = 0;
 let gameStarted = false;
 let gameOver = false;
-
-
 
 // BIRD
 
@@ -40,21 +36,21 @@ const bird = {
   draw() {
     ctx.save();
 
-  // Rotate bird based on velocity
-  ctx.translate(this.x, this.y);
+    // Rotate bird based on velocity
+    ctx.translate(this.x, this.y);
 
-  const rotation = this.velocity * 0.075;
-  ctx.rotate(rotation);
+    const rotation = this.velocity * 0.075;
+    ctx.rotate(rotation);
 
-  ctx.drawImage(
-    birdImg,
-    -this.width /2,
-    -this.height /2,
-    this.width,
-    this.height
-  );
+    ctx.drawImage(
+      birdImg,
+      -this.width / 2,
+      -this.height / 2,
+      this.width,
+      this.height,
+    );
 
-  ctx.restore();
+    ctx.restore();
   },
 
   update() {
@@ -76,10 +72,8 @@ const bird = {
 
   flap() {
     this.velocity = this.jump;
-  }
+  },
 };
-
-
 
 // PIPES
 
@@ -96,21 +90,14 @@ function createPipe() {
     x: canvas.width,
     top: topHeight,
     bottom: canvas.height - topHeight - pipeGap,
-    scored: false
+    scored: false,
   });
 }
 
 function drawPipes() {
-  pipes.forEach(pipe => {
-
+  pipes.forEach((pipe) => {
     // Top Pipe
-    ctx.drawImage(
-      topPipeImg,
-      pipe.x,
-      0,
-      pipeWidth,
-      pipe.top
-    );
+    ctx.drawImage(topPipeImg, pipe.x, 0, pipeWidth, pipe.top);
 
     // Bottom Pipe
     ctx.drawImage(
@@ -118,14 +105,13 @@ function drawPipes() {
       pipe.x,
       canvas.height - pipe.bottom,
       pipeWidth,
-      pipe.bottom
+      pipe.bottom,
     );
-
   });
 }
 
 function updatePipes() {
-  pipes.forEach(pipe => {
+  pipes.forEach((pipe) => {
     pipe.x -= pipeSpeed;
 
     // Score
@@ -138,10 +124,7 @@ function updatePipes() {
     if (
       bird.x + 20 > pipe.x &&
       bird.x - 20 < pipe.x + pipeWidth &&
-      (
-        bird.y - 20 < pipe.top ||
-        bird.y + 20 > canvas.height - pipe.bottom
-      )
+      (bird.y - 20 < pipe.top || bird.y + 20 > canvas.height - pipe.bottom)
     ) {
       gameOver = true;
     }
@@ -153,21 +136,11 @@ function updatePipes() {
   }
 }
 
-
-
 // BACKGROUND
 
 function drawBackground() {
-  ctx.drawImage(
-    bgImg,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 }
-
-
 
 // SCORE
 
@@ -176,8 +149,6 @@ function drawScore() {
   ctx.font = "100px Flappy";
   ctx.fillText(score, canvas.width / 2 - 10, 60);
 }
-
-
 
 // GAME OVER
 
@@ -190,13 +161,10 @@ function drawGameOver() {
   ctx.fillText("Press SPACE to Restart", 70, 310);
 }
 
-
-
 // CONTROLS
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-
     if (gameOver) {
       restartGame();
       return;
@@ -206,7 +174,6 @@ document.addEventListener("keydown", (e) => {
     bird.flap();
   }
 });
-
 
 // RESTART
 
@@ -220,8 +187,6 @@ function restartGame() {
   gameOver = false;
   gameStarted = false;
 }
-
-
 
 // GAME LOOP
 

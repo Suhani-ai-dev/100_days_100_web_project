@@ -8,12 +8,12 @@ The security of **100 Days 100 Web Projects** and our contributors is important 
 
 We actively maintain and provide security updates for the following:
 
-| Component | Version | Supported |
-|-----------|---------|-----------|
-| Main Website | Latest | ✅ |
-| All Projects | Latest | ✅ |
-| Dependencies | Latest | ✅ |
-| Legacy Projects | All | ⚠️ Best Effort |
+| Component       | Version | Supported      |
+| --------------- | ------- | -------------- |
+| Main Website    | Latest  | ✅             |
+| All Projects    | Latest  | ✅             |
+| Dependencies    | Latest  | ✅             |
+| Legacy Projects | All     | ⚠️ Best Effort |
 
 ## 🚨 Reporting Security Vulnerabilities
 
@@ -65,6 +65,7 @@ Please provide the following information:
 ### 🚫 Common Vulnerabilities to Avoid
 
 #### Cross-Site Scripting (XSS)
+
 ```javascript
 // ❌ Dangerous
 element.innerHTML = userInput;
@@ -76,15 +77,19 @@ element.innerHTML = DOMPurify.sanitize(userInput);
 ```
 
 #### Unsafe External Links
+
 ```html
 <!-- ❌ Dangerous -->
 <a href="https://external-site.com" target="_blank">Link</a>
 
 <!-- ✅ Safe -->
-<a href="https://external-site.com" target="_blank" rel="noopener noreferrer">Link</a>
+<a href="https://external-site.com" target="_blank" rel="noopener noreferrer"
+  >Link</a
+>
 ```
 
 #### Hardcoded Secrets
+
 ```javascript
 // ❌ Never do this
 const API_KEY = "your-secret-api-key";
@@ -157,7 +162,7 @@ We follow responsible disclosure practices:
 
 We maintain a security researchers hall of fame for those who help improve our security:
 
-- *Your name could be here!*
+- _Your name could be here!_
 
 ## 📞 Contact Information
 
@@ -174,7 +179,7 @@ For security-related inquiries:
 We provide safe harbor for security researchers who:
 
 - Report vulnerabilities through proper channels
-- Give reasonable time for fixes before disclosure  
+- Give reasonable time for fixes before disclosure
 - Don't access or modify user data
 - Don't perform destructive testing
 

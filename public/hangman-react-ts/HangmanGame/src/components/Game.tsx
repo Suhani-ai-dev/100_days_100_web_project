@@ -31,7 +31,7 @@ function reducer(state: State, action: Action): State {
         wrongCount: 0,
         status: "playing",
         revealLevel: 0,
-        hintData: action.hintData ?? null
+        hintData: action.hintData ?? null,
       };
     case "guess": {
       if (state.status !== "playing") return state;
@@ -40,11 +40,13 @@ function reducer(state: State, action: Action): State {
       const guessed = new Set(state.guessed);
       guessed.add(letter);
       // compute revealedAll considering guessed set
-      const revealedAll = state.word.split("").every(ch => {
+      const revealedAll = state.word.split("").every((ch) => {
         if (!/^[a-zA-Z]$/.test(ch)) return true; // non-letters considered revealed
         return guessed.has(ch.toLowerCase());
       });
-      const wrong = state.word.includes(letter) ? state.wrongCount : state.wrongCount + 1;
+      const wrong = state.word.includes(letter)
+        ? state.wrongCount
+        : state.wrongCount + 1;
       const status = revealedAll ? "won" : wrong >= 6 ? "lost" : "playing";
       return { ...state, guessed, wrongCount: wrong, status };
     }
@@ -59,7 +61,7 @@ function reducer(state: State, action: Action): State {
         wrongCount: 0,
         status: "playing",
         revealLevel: 0,
-        hintData: action.hintData ?? null
+        hintData: action.hintData ?? null,
       };
     default:
       return state;
@@ -75,7 +77,7 @@ export default function Game() {
     wrongCount: 0,
     status: "playing",
     revealLevel: 0,
-    hintData: null
+    hintData: null,
   });
 
   const [loadingHint, setLoadingHint] = useState(false);
@@ -86,7 +88,9 @@ export default function Game() {
 
   useEffect(() => {
     mountedRef.current = true;
-    return () => { mountedRef.current = false; };
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
 
   // fetch hint when word changes (initial load and resets)
@@ -99,12 +103,18 @@ export default function Game() {
         const key = state.word.toLowerCase();
         if (prefetchRef.current[key] !== undefined) {
           const cached = prefetchRef.current[key];
-          if (!cancelled) dispatch({ type: "init", word: state.word, hintData: cached ?? null });
+          if (!cancelled)
+            dispatch({
+              type: "init",
+              word: state.word,
+              hintData: cached ?? null,
+            });
           return;
         }
 
         const h = await fetchDefinition(state.word);
-        if (!cancelled) dispatch({ type: "init", word: state.word, hintData: h });
+        if (!cancelled)
+          dispatch({ type: "init", word: state.word, hintData: h });
       } catch (err) {
         // swallow — UI will show "no definition" if null
         console.warn("hint load error", err);
@@ -128,7 +138,9 @@ export default function Game() {
       }
     })();
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.word]);
 
@@ -164,7 +176,7 @@ export default function Game() {
     const newWord = pickRandomWord();
     setLoadingHint(true);
     fetchDefinition(newWord)
-      .then(h => {
+      .then((h) => {
         // store in prefetch memory so next load is instant
         prefetchRef.current[newWord.toLowerCase()] = h ?? null;
         dispatch({ type: "reset", word: newWord, hintData: h });
@@ -184,10 +196,16 @@ export default function Game() {
       <header className="topbar">
         <h1>Hangman</h1>
         <div className="controls">
-          <button onClick={handleRevealHint} className="btn" disabled={state.revealLevel >= 2}>
+          <button
+            onClick={handleRevealHint}
+            className="btn"
+            disabled={state.revealLevel >= 2}
+          >
             Reveal Hint
           </button>
-          <button onClick={handleReset} className="btn">New Word</button>
+          <button onClick={handleReset} className="btn">
+            New Word
+          </button>
         </div>
       </header>
 
@@ -197,10 +215,18 @@ export default function Game() {
         </div>
 
         <div className="center">
-          <WordDisplay word={state.word} guessed={state.guessed} revealFirst={state.revealLevel >= 1} />
+          <WordDisplay
+            word={state.word}
+            guessed={state.guessed}
+            revealFirst={state.revealLevel >= 1}
+          />
           <div className="status">
             {state.status === "won" && <div className="win">You won 🎉</div>}
-            {state.status === "lost" && <div className="lose">You lost — word was <strong>{state.word}</strong></div>}
+            {state.status === "lost" && (
+              <div className="lose">
+                You lost — word was <strong>{state.word}</strong>
+              </div>
+            )}
             <div>Attempts left: {6 - state.wrongCount}</div>
           </div>
           <Keyboard onGuess={handleGuess} disabledLetters={disabledLetters} />

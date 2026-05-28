@@ -30,19 +30,19 @@ An interactive 2D physics simulation featuring bouncing balls with realistic gra
 
 ## Usage
 
-| Action | How |
-|--------|-----|
-| Spawn a ball | Click anywhere on the canvas |
+| Action               | How                              |
+| -------------------- | -------------------------------- |
+| Spawn a ball         | Click anywhere on the canvas     |
 | Spawn multiple balls | Click and drag across the canvas |
-| Add a random ball | Click **+ Ball** |
-| Pause / Resume | Click **⏸** or press **Space** |
-| Clear all balls | Click **Clear** or press **C** |
-| Adjust gravity | Drag the **Gravity** slider |
-| Adjust bounciness | Drag the **Bounce** slider |
-| Change spawn size | Drag the **Size** slider |
-| Change trail length | Drag the **Trail** slider |
-| Change density | Drag the **Density** slider |
-| Remove a ball | Right-click it |
+| Add a random ball    | Click **+ Ball**                 |
+| Pause / Resume       | Click **⏸** or press **Space**   |
+| Clear all balls      | Click **Clear** or press **C**   |
+| Adjust gravity       | Drag the **Gravity** slider      |
+| Adjust bounciness    | Drag the **Bounce** slider       |
+| Change spawn size    | Drag the **Size** slider         |
+| Change trail length  | Drag the **Trail** slider        |
+| Change density       | Drag the **Density** slider      |
+| Remove a ball        | Right-click it                   |
 
 ## Screenshots
 

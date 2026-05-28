@@ -11,6 +11,7 @@ The Stock Profit Calculator helps users analyze stock transactions and make info
 - JavaScripts
 
 #### Features:
+
 - Input Fields: Number of shares, purchase price (INR), sell price, buy commission, sell commission.
 - Output: Total purchase amount, total sell amount, and profit/loss amount.
 - User-Friendly: Easy-to-use interface to quickly analyze stock activities.

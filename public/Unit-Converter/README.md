@@ -34,6 +34,7 @@ UnitConverter/
 ├── style.css
 ├── script.js
 └── README.md
+```
 ````
 
 ## How to Run
@@ -54,24 +55,23 @@ UnitConverter/
 
 The project contains:
 
-* A main heading section
-* Category dropdown
-* Input field for the original value
-* Unit dropdown for From value
-* Readonly output field for converted value
-* Unit dropdown for To value
-* Result display section
+- A main heading section
+- Category dropdown
+- Input field for the original value
+- Unit dropdown for From value
+- Readonly output field for converted value
+- Unit dropdown for To value
+- Result display section
 
 ## Future Improvements
 
-* Add more unit categories
-* Add dark mode
-* Add swap button
-* Add copy result button
-* Improve UI animations
-* Add quick conversion cards
+- Add more unit categories
+- Add dark mode
+- Add swap button
+- Add copy result button
+- Improve UI animations
+- Add quick conversion cards
 
 ## Author
 
 Anuj Sharma
-

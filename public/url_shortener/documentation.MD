@@ -8,11 +8,11 @@ This project is a full-stack **Advanced URL Shortener** built using modern web t
 
 It supports:
 
-* Secure link generation
-* Password-protected URLs
-* Analytics tracking
-* Expiry-based links
-* Authentication system
+- Secure link generation
+- Password-protected URLs
+- Analytics tracking
+- Expiry-based links
+- Authentication system
 
 ---
 
@@ -20,9 +20,9 @@ It supports:
 
 The application follows a **client-server architecture**:
 
-* **Frontend:** React (UI + API calls)
-* **Backend:** Node.js + Express (REST API)
-* **Database:** MongoDB (data storage)
+- **Frontend:** React (UI + API calls)
+- **Backend:** Node.js + Express (REST API)
+- **Database:** MongoDB (data storage)
 
 ### Flow:
 
@@ -51,9 +51,9 @@ Output: https://domain.com/abc123
 
 ## 🔐 Authentication System
 
-* JWT-based authentication
-* Token stored on client side
-* Protected routes require valid token
+- JWT-based authentication
+- Token stored on client side
+- Protected routes require valid token
 
 ### Flow:
 
@@ -66,10 +66,10 @@ Output: https://domain.com/abc123
 
 ## 🔒 Security Features
 
-* Password hashing using **bcrypt**
-* Rate limiting to prevent abuse
-* Protected routes using middleware
-* Input validation on API level
+- Password hashing using **bcrypt**
+- Rate limiting to prevent abuse
+- Protected routes using middleware
+- Input validation on API level
 
 ---
 
@@ -77,23 +77,23 @@ Output: https://domain.com/abc123
 
 Tracks:
 
-* Total clicks
-* IP address
-* Device type
-* Timestamp
+- Total clicks
+- IP address
+- Device type
+- Timestamp
 
 ### Working:
 
-* On every redirect → analytics updated
-* Data stored in MongoDB
+- On every redirect → analytics updated
+- Data stored in MongoDB
 
 ---
 
 ## ⏳ Expiry System
 
-* User can set expiry time
-* Backend checks expiry before redirect
-* Expired links are disabled automatically
+- User can set expiry time
+- Backend checks expiry before redirect
+- Expired links are disabled automatically
 
 ---
 
@@ -121,8 +121,8 @@ http://localhost:5000
 
 | Method | Endpoint    | Description   |
 | ------ | ----------- | ------------- |
-| POST   | signup | Register      |
-| POST   | /login  | Login         |
+| POST   | signup      | Register      |
+| POST   | /login      | Login         |
 | POST   | /api/logout | Logout        |
 | GET    | /api/me     | Get user data |
 
@@ -140,17 +140,17 @@ http://localhost:5000
 
 ### Backend
 
-* **controllers/** → Business logic
-* **models/** → Database schemas
-* **routes/** → API endpoints
-* **middleware/** → Auth, validation
-* **server.js** → Entry point
+- **controllers/** → Business logic
+- **models/** → Database schemas
+- **routes/** → API endpoints
+- **middleware/** → Auth, validation
+- **server.js** → Entry point
 
 ### Frontend
 
-* **components/** → UI components
-* **services/** → API calls
-* **utils/** → Helper functions
+- **components/** → UI components
+- **services/** → API calls
+- **utils/** → Helper functions
 
 ---
 
@@ -176,37 +176,37 @@ REACT_APP_BASE_URL=http://localhost:5000
 
 ## 🚀 Deployment Details
 
-* Frontend → Vercel
-* Backend → Render
-* Database → MongoDB Atlas
+- Frontend → Vercel
+- Backend → Render
+- Database → MongoDB Atlas
 
 ---
 
 ## ❗ Known Limitations
 
-* Analytics may be inaccurate with VPN users
-* No caching layer implemented
-* Not optimized for high-scale traffic yet
+- Analytics may be inaccurate with VPN users
+- No caching layer implemented
+- Not optimized for high-scale traffic yet
 
 ---
 
 ## 📌 Future Scope
 
-* Advanced analytics dashboard
-* Admin panel
-* Team collaboration
-* Caching (Redis)
-* Load balancing
+- Advanced analytics dashboard
+- Admin panel
+- Team collaboration
+- Caching (Redis)
+- Load balancing
 
 ---
 
 ## 🧠 Key Learnings
 
-* REST API design
-* Authentication (JWT)
-* Database modeling
-* Full-stack integration
-* Deployment workflows
+- REST API design
+- Authentication (JWT)
+- Database modeling
+- Full-stack integration
+- Deployment workflows
 
 ---
 

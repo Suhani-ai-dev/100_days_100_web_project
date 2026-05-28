@@ -5,7 +5,7 @@ const questions = [
   "Why should we hire you?",
   "What are your strengths and weaknesses?",
   "Explain a challenging project you worked on.",
-  "Where do you see yourself in 5 years?"
+  "Where do you see yourself in 5 years?",
 ];
 
 let currentQuestion = 0;
@@ -35,16 +35,17 @@ const micStatus = document.getElementById("mic-status");
 const recordingIndicator = document.getElementById("recording-indicator");
 
 // Speech Recognition Setup
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition;
 let isRecording = false;
-let finalTranscriptState = '';
+let finalTranscriptState = "";
 
 if (SpeechRecognition) {
   recognition = new SpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = true;
-  recognition.lang = 'en-US';
+  recognition.lang = "en-US";
 
   recognition.onstart = () => {
     isRecording = true;
@@ -55,13 +56,13 @@ if (SpeechRecognition) {
   };
 
   recognition.onresult = (event) => {
-    let interimTranscript = '';
-    let currentFinal = '';
+    let interimTranscript = "";
+    let currentFinal = "";
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
-        currentFinal += transcript + ' ';
+        currentFinal += transcript + " ";
       } else {
         interimTranscript += transcript;
       }
@@ -74,11 +75,13 @@ if (SpeechRecognition) {
   recognition.onerror = (event) => {
     console.error("Speech recognition error", event.error);
     stopRecording();
-    if(event.error === 'not-allowed') {
+    if (event.error === "not-allowed") {
       micStatus.innerText = "Microphone access denied";
-    } else if (event.error === 'network') {
+    } else if (event.error === "network") {
       micStatus.innerText = "Network/Security error";
-      alert("Speech Recognition failed with a 'network' error. This usually happens if you are accessing the site via an IP address (like 192.168.x.x) over HTTP instead of localhost or HTTPS. The Web Speech API requires a secure context (HTTPS or localhost) to function.");
+      alert(
+        "Speech Recognition failed with a 'network' error. This usually happens if you are accessing the site via an IP address (like 192.168.x.x) over HTTP instead of localhost or HTTPS. The Web Speech API requires a secure context (HTTPS or localhost) to function.",
+      );
     } else {
       micStatus.innerText = `Error: ${event.error}`;
     }
@@ -101,7 +104,9 @@ function stopRecording() {
 
 micBtn.addEventListener("click", () => {
   if (!SpeechRecognition) {
-    alert("Speech Recognition API is not supported in this browser. Please use Chrome or Edge.");
+    alert(
+      "Speech Recognition API is not supported in this browser. Please use Chrome or Edge.",
+    );
     return;
   }
 
@@ -110,12 +115,15 @@ micBtn.addEventListener("click", () => {
   } else {
     // Save current text area content so we append to it
     finalTranscriptState = answerBox.value;
-    if (finalTranscriptState.length > 0 && !finalTranscriptState.endsWith(' ')) {
-      finalTranscriptState += ' ';
+    if (
+      finalTranscriptState.length > 0 &&
+      !finalTranscriptState.endsWith(" ")
+    ) {
+      finalTranscriptState += " ";
     }
     try {
       recognition.start();
-    } catch(e) {
+    } catch (e) {
       console.log("Recognition already started or error:", e);
     }
   }
@@ -129,7 +137,7 @@ function startTimer() {
     // Update progress bar
     let timePercent = (timeLeft / totalTime) * 100;
     timerProgress.style.width = `${timePercent}%`;
-    
+
     timerProgress.className = "progress-fill";
     if (timeLeft > 15) {
       timerProgress.classList.add("success");
@@ -147,17 +155,18 @@ function startTimer() {
     if (timeLeft <= 0) {
       clearInterval(timer);
       stopRecording();
-      
+
       let answerLength = answerBox.value.trim().length;
       if (answerLength < 20) {
-        alert("Time's up! The interviewer looks disappointed with your short answer.");
+        alert(
+          "Time's up! The interviewer looks disappointed with your short answer.",
+        );
       } else {
         alert("Time's up! Moving to the next question.");
       }
-      
+
       nextQuestion();
     }
-
   }, 1000);
 }
 
@@ -189,7 +198,8 @@ function updateStress() {
 
   // Visual background feedback
   if (stress >= 70) {
-    document.body.style.background = "linear-gradient(135deg, #450a0a, #0f172a)";
+    document.body.style.background =
+      "linear-gradient(135deg, #450a0a, #0f172a)";
   } else {
     document.body.style.background = "var(--bg-color)";
   }
@@ -198,7 +208,7 @@ function updateStress() {
 function loadQuestion() {
   questionText.innerText = questions[currentQuestion];
   questionCount.innerText = `${currentQuestion + 1}/${questions.length}`;
-  
+
   let qPercent = ((currentQuestion + 1) / questions.length) * 100;
   questionProgress.style.width = `${qPercent}%`;
 
@@ -235,7 +245,9 @@ function nextQuestion() {
     }
 
     setTimeout(() => {
-      alert(`Interview Complete!\n\nFinal Stress Level: ${stress}%\n${finalMessage}`);
+      alert(
+        `Interview Complete!\n\nFinal Stress Level: ${stress}%\n${finalMessage}`,
+      );
     }, 100);
 
     return;
